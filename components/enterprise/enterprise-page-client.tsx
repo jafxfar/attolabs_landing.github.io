@@ -30,7 +30,7 @@ export const EnterprisePageClient = () => {
 
   return (
     <div
-      className="enterprise-theme min-h-screen font-sans antialiased overflow-x-hidden"
+      className="enterprise-theme min-h-screen font-sans antialiased"
       style={{
         ...enterpriseThemeStyle,
         backgroundColor: enterpriseTheme.bg,
