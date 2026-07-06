@@ -31,7 +31,7 @@ export const ProjectShowcaseCard = ({ project, index }: ProjectShowcaseCardProps
         <Link
           href={project.href}
           aria-label={`View project: ${project.title}`}
-          className="group block relative w-full aspect-video overflow-hidden bg-[#111] rounded-4xl"
+          className="group block relative w-full aspect-video overflow-hidden bg-[#111] lg:rounded-[100px] md:rounded-[64px] rounded-[32px]"
         >
           <motion.div
             className="absolute inset-0 overflow-hidden"

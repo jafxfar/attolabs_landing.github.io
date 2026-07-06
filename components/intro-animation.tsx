@@ -3,19 +3,24 @@
 import { useEffect, useState } from "react"
 
 const LETTERS = ["A", "T", "T", "O", "L", "A", "B", "S"]
+const ICON_SRC = "/images/logos/atto-mark.svg"
+const ICON_SLOT_RATIO = 1.15
 
 const LETTER_IN_STAGGER  = 90    // ms between each letter appearing
 const LETTER_IN_DUR      = 700   // duration of each letter appear transition
 const HOLD_DURATION      = 300   // hold fully visible before exit
-const LETTERS_IN_TOTAL   = LETTER_IN_STAGGER * (LETTERS.length - 1) + LETTER_IN_DUR + HOLD_DURATION
+const LETTERS_IN_TOTAL   = LETTER_IN_STAGGER * LETTERS.length + LETTER_IN_DUR + HOLD_DURATION
 
 const LETTER_OUT_STAGGER = 55    // ms between each letter disappearing
 const LETTER_OUT_DUR     = 450   // duration of each letter fade out
-const LETTERS_OUT_TOTAL  = LETTER_OUT_STAGGER * (LETTERS.length - 1) + LETTER_OUT_DUR
+const LETTERS_OUT_TOTAL  = LETTER_OUT_STAGGER * LETTERS.length + LETTER_OUT_DUR
 
 const CURTAIN_DELAY      = LETTERS_IN_TOTAL + 100
 const CURTAIN_DURATION   = 1300  // matches the CSS transition on the curtain div
 const ANIM_TOTAL         = CURTAIN_DELAY + LETTERS_OUT_TOTAL + 1400
+
+const SLOT_COUNT = LETTERS.length + ICON_SLOT_RATIO
+const BASE_SIZE = `calc((100vw - 80px) / ${SLOT_COUNT})`
 
 // Exported: moment the curtain finishes retracting — when the bg is fully visible
 export const INTRO_DURATION_MS = CURTAIN_DELAY + CURTAIN_DURATION
@@ -24,7 +29,45 @@ export const HERO_REVEAL_MS = CURTAIN_DELAY + CURTAIN_DURATION - 150
 
 type Phase = "idle" | "in" | "out" | "done"
 
-export function IntroAnimation({ onDone }: { onDone: () => void }) {
+type IntroAnimationProps = {
+  onDone: () => void
+  iconSrc?: string
+  showIcon?: boolean
+}
+
+const getRevealStyle = (phase: Phase, inDelay: number, outDelay: number) => {
+  const isIdle = phase === "idle"
+  const isIn = phase === "in"
+  const isOut = phase === "out"
+
+  const opacity = isIdle ? 0 : isIn ? 1 : 0
+  const blur = isIdle ? 36 : isIn ? 0 : 24
+  const translateY = isIdle ? 48 : isIn ? 0 : -20
+
+  const transition = isOut
+    ? `opacity ${LETTER_OUT_DUR}ms cubic-bezier(0.4,0,1,1) ${outDelay}ms,
+       filter  ${LETTER_OUT_DUR}ms cubic-bezier(0.4,0,1,1) ${outDelay}ms,
+       transform ${LETTER_OUT_DUR}ms cubic-bezier(0.4,0,1,1) ${outDelay}ms`
+    : isIn
+    ? `opacity ${LETTER_IN_DUR}ms cubic-bezier(0.16,1,0.3,1) ${inDelay}ms,
+       filter  ${LETTER_IN_DUR}ms cubic-bezier(0.16,1,0.3,1) ${inDelay}ms,
+       transform ${LETTER_IN_DUR}ms cubic-bezier(0.16,1,0.3,1) ${inDelay}ms`
+    : "none"
+
+  return {
+    opacity,
+    filter: `blur(${blur}px)`,
+    transform: `translateY(${translateY}px)`,
+    transition,
+    willChange: "opacity, filter, transform" as const,
+  }
+}
+
+export function IntroAnimation({
+  onDone,
+  iconSrc = ICON_SRC,
+  showIcon = true,
+}: IntroAnimationProps) {
   const [phase, setPhase] = useState<Phase>("idle")
   const [curtainUp, setCurtainUp] = useState(false)
 
@@ -54,44 +97,41 @@ export function IntroAnimation({ onDone }: { onDone: () => void }) {
         }}
       />
 
-      {/* ATTOLABS letters */}
+      {/* Brand mark + ATTOLABS letters */}
       <div className="absolute inset-0 flex items-center justify-center">
-        <div className="flex" style={{ gap: "0.06em" }}>
+        <div className="flex items-center" style={{ gap: "0.2em" }}>
+          {showIcon && (
+            <div
+              className="shrink-0 select-none"
+              style={{
+                width: `calc(${BASE_SIZE} * ${ICON_SLOT_RATIO})`,
+                height: `calc(${BASE_SIZE} * ${ICON_SLOT_RATIO})`,
+                ...getRevealStyle(phase, 0, LETTERS.length * LETTER_OUT_STAGGER),
+              }}
+              aria-hidden="true"
+            >
+              <img
+                src={iconSrc}
+                alt=""
+                draggable={false}
+                className="h-full w-full"
+              />
+            </div>
+          )}
+
           {LETTERS.map((letter, i) => {
-            const inDelay  = i * LETTER_IN_STAGGER
-            const outDelay = i * LETTER_OUT_STAGGER
-
-            // idle → invisible starting position
-            const isIdle = phase === "idle"
-            const isIn   = phase === "in"
-            const isOut  = phase === "out"
-
-            const opacity    = isIdle ? 0 : isIn ? 1 : 0
-            const blur       = isIdle ? 36 : isIn ? 0 : 24
-            const translateY = isIdle ? 48 : isIn ? 0 : -20
-
-            const transition = isOut
-              ? `opacity ${LETTER_OUT_DUR}ms cubic-bezier(0.4,0,1,1) ${outDelay}ms,
-                 filter  ${LETTER_OUT_DUR}ms cubic-bezier(0.4,0,1,1) ${outDelay}ms,
-                 transform ${LETTER_OUT_DUR}ms cubic-bezier(0.4,0,1,1) ${outDelay}ms`
-              : isIn
-              ? `opacity ${LETTER_IN_DUR}ms cubic-bezier(0.16,1,0.3,1) ${inDelay}ms,
-                 filter  ${LETTER_IN_DUR}ms cubic-bezier(0.16,1,0.3,1) ${inDelay}ms,
-                 transform ${LETTER_IN_DUR}ms cubic-bezier(0.16,1,0.3,1) ${inDelay}ms`
-              : "none"
+            const slotIndex = showIcon ? i + 1 : i
+            const inDelay = slotIndex * LETTER_IN_STAGGER
+            const outDelay = slotIndex * LETTER_OUT_STAGGER
 
             return (
               <span
                 key={i}
-                className="font-sans font-bold text-[#111] leading-none select-none"
+                className="font-sans font-bold text-[#fb4d40] leading-none select-none"
                 style={{
-                  fontSize: `calc((100vw - 64px) / ${LETTERS.length})`,
+                  fontSize: BASE_SIZE,
                   letterSpacing: "0.05em",
-                  opacity,
-                  filter: `blur(${blur}px)`,
-                  transform: `translateY(${translateY}px)`,
-                  transition,
-                  willChange: "opacity, filter, transform",
+                  ...getRevealStyle(phase, inDelay, outDelay),
                 }}
               >
                 {letter}

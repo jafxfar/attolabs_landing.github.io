@@ -28,7 +28,10 @@ export const EnterpriseNav = () => {
             href="/enterprise"
             className="font-pixel text-xs tracking-[0.25em] text-black/70 hover:text-black transition-colors"
           >
-            {enterpriseNav.brand}
+            <div className="w-[120px] h-[45px] flex items-center justify-center">
+            <img className="w-auto" src={enterpriseNav.logo} alt="" />
+            </div>
+            {/* {enterpriseNav.brand} */}
           </Link>
 
           <div

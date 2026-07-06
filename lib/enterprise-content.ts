@@ -64,6 +64,7 @@ export type Testimonial = {
 
 export const enterpriseNav = {
   brand: "ATTOLABS",
+  logo: "/images/logos/full_logo.png",
   links: [
     { label: "Solutions", href: "#solutions" },
     { label: "Industries", href: "#industries" },
@@ -82,7 +83,9 @@ export const enterpriseHero = {
   primaryCta: { label: "Talk to an Expert", href: "#contact" } satisfies CtaLink,
   secondaryCta: { label: "View Solutions", href: "#solutions" } satisfies CtaLink,
   videoSrc:
-    "/images/agentic-hero.mp4",
+    // "/images/hero-video.mp4",
+    // "/images/hero-video2.mp4",
+    "/images/hero-video3.mp4",
   image: "/images/windmill.webp",
   clientLogos: [
     { name: "Northgate Financial", src: "/images/logos/northgate.svg" },
