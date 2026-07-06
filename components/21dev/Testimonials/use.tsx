@@ -1,8 +1,10 @@
 "use client"
 
 import { TestimonialsColumn } from "@/components/21dev/Testimonials/testimonials"
+import { PixelIcon } from "@/components/pixel-icon"
 import { RevealLines } from "@/components/reveal-lines"
 import { RevealText } from "@/components/reveal-text"
+import { ScrollFadeIn } from "@/components/scroll-fade-in"
 import { SectionTag } from "@/components/section-tag"
 import { enterpriseTestimonials } from "@/lib/enterprise-content"
 import { motion } from "framer-motion"
@@ -32,7 +34,12 @@ export const TestimonialsSection = () => {
           viewport={{ once: true }}
           className="flex flex-col items-center justify-center max-w-xl mx-auto mb-12"
         >
-          <SectionTag accent>Testimonials</SectionTag>
+          <ScrollFadeIn scale>
+            <PixelIcon type="agents" size={40} />
+          </ScrollFadeIn>
+          <div className="mt-4">
+            <SectionTag accent>Testimonials</SectionTag>
+          </div>
           <RevealText
             as="h2"
             className="text-3xl md:text-4xl font-light tracking-tight leading-[1.05] mt-6 text-center"

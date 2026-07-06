@@ -16,9 +16,11 @@ import {
   type LucideIcon,
 } from "lucide-react"
 import { motion, useScroll, useTransform, useInView, useSpring } from "framer-motion"
+import { PixelIcon } from "@/components/pixel-icon"
 import { SectionTag } from "@/components/section-tag"
 import { RevealLines } from "@/components/reveal-lines"
 import { RevealText } from "@/components/reveal-text"
+import { ScrollFadeIn } from "@/components/scroll-fade-in"
 import {
   enterpriseDifferentiators,
   enterpriseHero,
@@ -97,7 +99,12 @@ export default function AboutUsSection() {
         variants={containerVariants}
       >
         <motion.div className="flex flex-col items-center mb-6" variants={itemVariants}>
-          <SectionTag accent>Why Choose Us</SectionTag>
+          <ScrollFadeIn scale>
+            <PixelIcon type="platform" size={40} />
+          </ScrollFadeIn>
+          <div className="mt-4">
+            <SectionTag accent>Why Choose Us</SectionTag>
+          </div>
           <RevealText
             as="h2"
             className="text-3xl md:text-4xl font-light tracking-tight leading-[1.05] mt-6 mb-4 text-center"

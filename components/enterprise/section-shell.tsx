@@ -1,8 +1,10 @@
 "use client"
 
 import React from "react"
+import { PixelIcon, type PixelIconType } from "@/components/pixel-icon"
 import { RevealLines } from "@/components/reveal-lines"
 import { RevealText } from "@/components/reveal-text"
+import { ScrollFadeIn } from "@/components/scroll-fade-in"
 import { SectionTag } from "@/components/section-tag"
 
 type SectionShellProps = {
@@ -15,6 +17,7 @@ type SectionShellProps = {
   bordered?: boolean
   centered?: boolean
   accent?: boolean
+  pixelIcon?: PixelIconType
 }
 
 export const SectionShell = ({
@@ -27,6 +30,7 @@ export const SectionShell = ({
   bordered = true,
   centered = false,
   accent = false,
+  pixelIcon,
 }: SectionShellProps) => (
   <section
     id={id}
@@ -43,7 +47,14 @@ export const SectionShell = ({
         }`}
       >
         <div className={centered ? "flex flex-col items-center" : ""}>
-          <SectionTag accent={accent}>{tag}</SectionTag>
+          {pixelIcon && (
+            <ScrollFadeIn scale className={centered ? "" : "mb-0"}>
+              <PixelIcon type={pixelIcon} size={40} />
+            </ScrollFadeIn>
+          )}
+          <div className={pixelIcon ? "mt-4" : ""}>
+            <SectionTag accent={accent}>{tag}</SectionTag>
+          </div>
           <RevealText className="mt-5 text-4xl md:text-5xl font-light tracking-tight leading-[1.05]">
             {title}
           </RevealText>

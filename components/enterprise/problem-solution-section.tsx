@@ -2,8 +2,11 @@
 
 import { BentoCard } from "@/components/bento-card"
 import { CardImageTop } from "@/components/card-image-top"
+import { PixelIcon } from "@/components/pixel-icon"
 import { RevealText } from "@/components/reveal-text"
+import { ScrollFadeIn } from "@/components/scroll-fade-in"
 import { ScrollStagger } from "@/components/scroll-stagger"
+import { SectionTag } from "@/components/section-tag"
 import { handleBentoMouseMove } from "@/lib/bento-mouse"
 import {
   enterpriseApproach,
@@ -13,6 +16,17 @@ import {
 
 export const ProblemSolutionSection = () => (
   <section id="approach" className="py-16 px-6 md:px-12 lg:px-20">
+    <div className="max-w-6xl mx-auto mb-8">
+      <ScrollFadeIn scale>
+        <PixelIcon type="workflow" size={40} />
+      </ScrollFadeIn>
+      <div className="mt-4">
+        <SectionTag accent>APPROACH</SectionTag>
+      </div>
+      <RevealText className="mt-5 text-3xl md:text-4xl font-light tracking-tight leading-[1.05]">
+        {"From challenge\nto measurable outcome."}
+      </RevealText>
+    </div>
     <div
       className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-3"
       onMouseMove={handleBentoMouseMove}

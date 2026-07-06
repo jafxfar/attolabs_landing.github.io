@@ -475,6 +475,15 @@ export const enterpriseTestimonials: Testimonial[] = [
   },
 ]
 
+export const enterpriseContactCta = {
+  headline: "Start your enterprise\ndigital transformation.",
+  subheadline:
+    "Partner with ATTOLABS to modernize legacy systems, integrate platforms, and deliver measurable outcomes at scale.",
+  emailPlaceholder: "your@company.com",
+  submitLabel: "Talk to an Expert",
+  successMessage: "Thank you — our team will reach out within one business day.",
+}
+
 export const enterpriseFooter = {
   company: {
     name: "ATTOLABS",

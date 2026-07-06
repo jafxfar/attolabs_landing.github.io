@@ -2,7 +2,9 @@
 
 import { BentoCard } from "@/components/bento-card"
 import { CardImageTop } from "@/components/card-image-top"
+import { PixelIcon } from "@/components/pixel-icon"
 import { RevealText } from "@/components/reveal-text"
+import { ScrollFadeIn } from "@/components/scroll-fade-in"
 import { SectionTag } from "@/components/section-tag"
 import { handleBentoMouseMove } from "@/lib/bento-mouse"
 import { enterpriseIndustries } from "@/lib/enterprise-content"
@@ -16,7 +18,12 @@ export const IndustriesWhyUsSection = () => (
   >
     <div className="max-w-6xl mx-auto">
       <div className="mb-8">
-        <SectionTag accent>Industries</SectionTag>
+        <ScrollFadeIn scale>
+          <PixelIcon type="integrations" size={40} />
+        </ScrollFadeIn>
+        <div className="mt-4">
+          <SectionTag accent>Industries</SectionTag>
+        </div>
         <RevealText
           as="h2"
           className="text-3xl md:text-4xl font-light tracking-tight leading-[1.05] mt-6"

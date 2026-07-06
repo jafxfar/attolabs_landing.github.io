@@ -40,6 +40,7 @@ export const TechStackSection = () => (
     title={"Enterprise-grade\nplatform ecosystem."}
     description="Modern cloud-native architecture with the tools your technical teams already trust."
     accent
+    pixelIcon="integrations"
   >
     <ScrollFadeIn scale className="rounded-2xl overflow-hidden border border-black/[0.07] flex flex-col md:block md:relative mb-12">
       <div className="relative w-full h-[280px] md:h-[420px] shrink-0">

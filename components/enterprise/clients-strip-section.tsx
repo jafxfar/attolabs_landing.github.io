@@ -1,6 +1,7 @@
 "use client"
 
 import { LogoCloud } from "@/components/21dev/Clients/client"
+import { PixelIcon } from "@/components/pixel-icon"
 import { ScrollFadeIn } from "@/components/scroll-fade-in"
 import { enterpriseHero } from "@/lib/enterprise-content"
 
@@ -12,6 +13,9 @@ const logos = enterpriseHero.clientLogos.map((logo) => ({
 export const ClientsStripSection = () => (
   <section className="py-12 px-6 md:px-12 lg:px-20 border-b border-black/[0.06]">
     <div className="max-w-6xl mx-auto">
+      <ScrollFadeIn scale className="flex justify-center mb-4">
+        <PixelIcon type="platform" size={40} />
+      </ScrollFadeIn>
       <ScrollFadeIn>
         <p className="text-[10px] tracking-widest uppercase text-black/30 mb-6 text-center">
           Trusted by enterprise leaders

@@ -7,6 +7,8 @@ import { useEffect, useRef } from "react"
 
 type IconType = "platform" | "agents" | "workflow" | "integrations" | "pricing"
 
+export type PixelIconType = IconType
+
 interface PixelIconProps {
   type: IconType
   size?: number  // rendered px size (default 40)

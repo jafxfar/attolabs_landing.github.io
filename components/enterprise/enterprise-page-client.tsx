@@ -2,6 +2,8 @@
 
 import { useCallback, useEffect, useState } from "react"
 import { IntroAnimation, HERO_REVEAL_MS } from "@/components/intro-animation"
+import { PixelIcon } from "@/components/pixel-icon"
+import { ScrollFadeIn } from "@/components/scroll-fade-in"
 import { EnterpriseNav } from "@/components/enterprise/enterprise-nav"
 import { HeroSection } from "@/components/enterprise/hero-section"
 import { ClientsStripSection } from "@/components/enterprise/clients-strip-section"
@@ -14,6 +16,7 @@ import { EnterpriseFooter } from "@/components/enterprise/enterprise-footer"
 import AboutUsSection from "@/components/21dev/about-us"
 import { TestimonialsSection } from "@/components/21dev/Testimonials/use"
 import { enterpriseTheme, enterpriseThemeStyle } from "@/lib/enterprise-theme"
+import { enterpriseContactCta } from "@/lib/enterprise-content"
 
 export const EnterprisePageClient = () => {
   const [heroReady, setHeroReady] = useState(false)
@@ -51,7 +54,10 @@ export const EnterprisePageClient = () => {
       <TestimonialsSection />
       <TechStackSection />
       <AboutUsSection />
-      <section className="relative py-32 px-6 md:px-12 lg:px-20 border-t border-black/[0.06] overflow-hidden">
+      <section
+        id="contact"
+        className="relative py-32 px-6 md:px-12 lg:px-20 border-t border-black/[0.06] overflow-hidden"
+      >
         {/* Glass panels image — anchored to bottom center */}
         <img
           src="/images/footer.png"
@@ -78,11 +84,14 @@ export const EnterprisePageClient = () => {
           }}
         />
         <div className="relative z-10 max-w-2xl mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tight leading-[1.05] mb-6">
-            Start building your<br />agent workforce.
+          <ScrollFadeIn scale className="flex justify-center mb-4">
+            <PixelIcon type="pricing" size={40} />
+          </ScrollFadeIn>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tight leading-[1.05] mb-6 whitespace-pre-line">
+            {enterpriseContactCta.headline}
           </h2>
           <p className="text-sm text-black/45 leading-relaxed mb-10">
-            Join thousands of teams deploying AI agents that work around the clock, across every timezone.
+            {enterpriseContactCta.subheadline}
           </p>
           {!submitted ? (
             <form
@@ -91,7 +100,7 @@ export const EnterprisePageClient = () => {
             >
               <input
                 type="email"
-                placeholder="your@email.com"
+                placeholder={enterpriseContactCta.emailPlaceholder}
                 value={email}
                 onChange={e => setEmail(e.target.value)}
                 required
@@ -99,15 +108,15 @@ export const EnterprisePageClient = () => {
               />
               <button
                 type="submit"
-                className="px-8 py-3 bg-[#111] text-white text-sm rounded-xl hover:bg-[#333] transition-colors tracking-widest font-medium"
+                className="px-8 py-3 bg-[var(--enterprise-accent)] text-white text-sm rounded-xl hover:bg-[var(--enterprise-accent-hover)] transition-colors tracking-wide font-medium"
               >
-                JOIN
+                {enterpriseContactCta.submitLabel}
               </button>
             </form>
           ) : (
             <div className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-emerald-600/20 bg-emerald-50 text-emerald-700 text-sm">
               <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-              {"You're on the list. We'll be in touch."}
+              {enterpriseContactCta.successMessage}
             </div>
           )}
         </div>
