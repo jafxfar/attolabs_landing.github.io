@@ -21,32 +21,27 @@ import { SectionTag } from "@/components/section-tag"
 import { RevealLines } from "@/components/reveal-lines"
 import { RevealText } from "@/components/reveal-text"
 import { ScrollFadeIn } from "@/components/scroll-fade-in"
-import {
-  enterpriseDifferentiators,
-  enterpriseHero,
-  enterpriseNav,
-  type Differentiator,
-} from "@/lib/enterprise-content"
+import { HERO_POSTER } from "@/lib/attolabs/shared"
+import { useTranslations } from "next-intl"
 
-const iconMap: Record<Differentiator["icon"], LucideIcon> = {
-  award: Award,
-  zap: Zap,
-  brain: Brain,
-  layers: Layers,
-  headphones: Headphones,
-}
-
-const leftItems = enterpriseDifferentiators.slice(0, 3)
-const rightItems = enterpriseDifferentiators.slice(3)
-
-const stats = [
-  { icon: <Calendar className="w-5 h-5" />, value: 15, label: "Years Experience", suffix: "+" },
-  { icon: <Award className="w-5 h-5" />, value: 500, label: "Projects Delivered", suffix: "+" },
-  { icon: <Users className="w-5 h-5" />, value: 50, label: "Enterprise Clients", suffix: "+" },
-  { icon: <TrendingUp className="w-5 h-5" />, value: 99, label: "Uptime SLA", suffix: ".9%" },
-]
+const diffIcons = [Award, Zap, Brain, Layers, Headphones]
+const statIcons = [Calendar, Award, Users, TrendingUp]
 
 export default function AboutUsSection() {
+  const t = useTranslations("about")
+  const tNav = useTranslations("nav")
+  const differentiators = t.raw("differentiators") as { title: string; description: string }[]
+  const statsData = t.raw("stats") as { value: number; suffix: string; label: string }[]
+  const leftItems = differentiators.slice(0, 3)
+  const rightItems = differentiators.slice(3)
+  const stats = statsData.map((stat, index) => ({
+    ...stat,
+    icon: (() => {
+      const Icon = statIcons[index] ?? Calendar
+      return <Icon className="w-5 h-5" />
+    })(),
+  }))
+
   const sectionRef = useRef<HTMLDivElement>(null)
   const statsRef = useRef<HTMLDivElement>(null)
   const isInView = useInView(sectionRef, { once: false, amount: 0.1 })
@@ -79,7 +74,7 @@ export default function AboutUsSection() {
 
   return (
     <section
-      id="why-us"
+      id="about"
       ref={sectionRef}
       className="w-full py-32 px-6 md:px-12 lg:px-20 bg-[#F5F4F0] text-[#111] overflow-hidden relative border-t border-black/[0.06]"
     >
@@ -103,13 +98,13 @@ export default function AboutUsSection() {
             <PixelIcon type="platform" size={40} />
           </ScrollFadeIn>
           <div className="mt-4">
-            <SectionTag accent>Why Choose Us</SectionTag>
+            <SectionTag accent>{t("tag")}</SectionTag>
           </div>
           <RevealText
             as="h2"
             className="text-3xl md:text-4xl font-light tracking-tight leading-[1.05] mt-6 mb-4 text-center"
           >
-            Built for Enterprise Scale
+            {t("title")}
           </RevealText>
           <motion.div
             className="w-16 h-px bg-[var(--enterprise-accent)]/40"
@@ -122,13 +117,13 @@ export default function AboutUsSection() {
         <RevealLines
           className="text-center max-w-2xl mx-auto mb-16 text-sm text-black/45 leading-relaxed"
         >
-          ATTOLABS partners with global organizations to modernize mission-critical systems, reduce operational costs, and accelerate digital transformation with confidence.
+          {t("description")}
         </RevealLines>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
           <div className="space-y-12">
             {leftItems.map((item, index) => {
-              const Icon = iconMap[item.icon]
+              const Icon = diffIcons[index] ?? Award
               return (
                 <ServiceItem
                   key={item.title}
@@ -153,8 +148,8 @@ export default function AboutUsSection() {
                 whileHover={{ scale: 1.02, transition: { duration: 0.3 } }}
               >
                 <img
-                  src={enterpriseHero.image}
-                  alt="Enterprise architecture"
+                  src={HERO_POSTER}
+                  alt={t("subtitle")}
                   className="w-full h-full object-cover aspect-[4/5]"
                 />
               </motion.div>
@@ -169,7 +164,7 @@ export default function AboutUsSection() {
 
           <div className="space-y-12">
             {rightItems.map((item, index) => {
-              const Icon = iconMap[item.icon]
+              const Icon = diffIcons[index + 3] ?? Headphones
               return (
                 <ServiceItem
                   key={item.title}
@@ -212,19 +207,19 @@ export default function AboutUsSection() {
         >
           <div className="flex-1 text-center md:text-left">
             <h3 className="text-2xl font-light tracking-tight mb-2">
-              Ready to Transform Your IT Infrastructure?
+              {t("subtitle")}
             </h3>
             <p className="text-sm text-black/45">
-              Talk to our enterprise team about your modernization roadmap.
+              {t("description")}
             </p>
           </div>
           <motion.a
-            href={enterpriseNav.cta.href}
+            href="#contact"
             className="inline-flex items-center gap-2 bg-[var(--enterprise-accent)] text-white px-6 py-3 rounded-xl text-sm font-light hover:bg-[var(--enterprise-accent-hover)] transition-colors shrink-0"
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
           >
-            {enterpriseNav.cta.label} <ArrowRight className="w-4 h-4" />
+            {tNav("cta")} <ArrowRight className="w-4 h-4" />
           </motion.a>
         </motion.div>
       </motion.div>

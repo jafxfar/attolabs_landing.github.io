@@ -1,18 +1,5 @@
-import type { Metadata } from "next"
-import { ProjectsPageClient } from "@/components/enterprise/projects-page-client"
+import { redirect } from "next/navigation"
 
-export const metadata: Metadata = {
-  title: "Projects — ATTOLABS Enterprise",
-  description:
-    "Explore enterprise software projects across finance, healthcare, manufacturing, and more.",
-  openGraph: {
-    title: "Projects — ATTOLABS Enterprise",
-    description:
-      "Explore enterprise software projects across finance, healthcare, manufacturing, and more.",
-    type: "website",
-  },
-}
+const ProjectsRedirect = () => redirect("/en/enterprise/projects")
 
-const ProjectsPage = () => <ProjectsPageClient />
-
-export default ProjectsPage
+export default ProjectsRedirect

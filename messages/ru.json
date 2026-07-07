@@ -1,0 +1,175 @@
+{
+  "metadata": {
+    "homeTitle": "Engineers for AI Era - AttoLabs",
+    "homeDescription": "Инженерная компания нового поколения. Мы разрабатываем современные решения и реализуем инновационные проекты.",
+    "projectsTitle": "Проекты - AttoLabs",
+    "projectsDescription": "Изучите портфолио успешных проектов AttoLabs. Индивидуальные веб и мобильные приложения для роста и инноваций вашего бизнеса.",
+    "ogLocale": "ru_RU",
+    "canonicalPath": "https://attolabs.eu/ru/"
+  },
+  "nav": {
+    "brand": "ATTOLABS",
+    "whatWeDo": "Проекты",
+    "whoWeAre": "О нас",
+    "workWithUs": "Сотрудничество",
+    "jobs": "Карьера",
+    "cta": "Поделитесь вашим видением",
+    "workWithUsHref": "https://attolabs.eu/ru/sotrudnichestvo/",
+    "jobsHref": "https://attolabs.eu/ru/jobs/"
+  },
+  "hero": {
+    "headline": "Engineers for AI Era",
+    "subheadline": "AttoLabs — лидер в мире инноваций и технологий, который приводит к глобальным переменам. Наше внимание к комфорту наших сотрудников и производственная эффективность мирового класса ставят нас на первое место в индустрии высоких технологий.",
+    "primaryCta": "Поделитесь вашим видением",
+    "secondaryCta": "Посмотреть проекты"
+  },
+  "teamStrip": {
+    "label": "Познакомьтесь с командой AttoLabs"
+  },
+  "approach": {
+    "tag": "МИССИЯ",
+    "title": "Инновации с целью",
+    "missionTitle": "Глобальное влияние через технологии",
+    "missionBody": "AttoLabs стремится оказывать влияние на глобальный уровень благодаря разработке решений, которые способствуют устойчивому развитию и улучшению качества жизни.",
+    "commitmentTitle": "Наше обязательство",
+    "commitmentBody": "Наша команда стремится к высочайшему качеству и инновационным решениям, чтобы ваш проект был реализован на самом высоком уровне, превзошел ожидания и оставил неизгладимое впечатление.",
+    "cta": "Посмотреть проекты"
+  },
+  "services": {
+    "tag": "УСЛУГИ",
+    "title": "Что мы делаем",
+    "subtitle": "Полный цикл разработки ПО для предприятий в банкинге, энергетике, госсекторе и других отраслях.",
+    "items": [
+      { "id": "web-development", "name": "Web Разработка", "industriesCount": 2, "projectsCount": 2, "href": "https://attolabs.eu/ru/proekty/?services=119" },
+      { "id": "cloud-development", "name": "Облачная Разработка", "industriesCount": 1, "projectsCount": 1, "href": "https://attolabs.eu/ru/proekty/?services=79" },
+      { "id": "mvp-development", "name": "Разработка MVP", "industriesCount": 1, "projectsCount": 1, "href": "https://attolabs.eu/ru/proekty/?services=103" },
+      { "id": "mobile-development", "name": "Разработка мобильных приложений", "industriesCount": 1, "projectsCount": 1, "href": "https://attolabs.eu/ru/proekty/?services=99" },
+      { "id": "custom-software", "name": "Разработка ПО", "industriesCount": 1, "projectsCount": 2, "href": "https://attolabs.eu/ru/proekty/?services=91" },
+      { "id": "digital-transformation", "name": "Цифровая трансформация", "industriesCount": 1, "projectsCount": 1, "href": "https://attolabs.eu/ru/proekty/?services=243" }
+    ]
+  },
+  "industries": {
+    "tag": "ИНДУСТРИИ",
+    "title": "Отрасли, которым мы служим",
+    "items": [
+      { "id": "banking", "name": "Банкинг", "servicesCount": 2, "projectsCount": 2, "href": "https://attolabs.eu/ru/proekty/?industries=163" },
+      { "id": "government", "name": "Государственные услуги", "servicesCount": 1, "projectsCount": 1, "href": "https://attolabs.eu/ru/proekty/?industries=247" },
+      { "id": "logistic", "name": "Логистика", "servicesCount": 1, "projectsCount": 1, "href": "https://attolabs.eu/ru/proekty/?industries=171" },
+      { "id": "education", "name": "Образование", "servicesCount": 1, "projectsCount": 1, "href": "https://attolabs.eu/ru/proekty/?industries=147" },
+      { "id": "enterprise", "name": "Предприятие", "servicesCount": 1, "projectsCount": 1, "href": "https://attolabs.eu/ru/proekty/?industries=207" },
+      { "id": "energy-utilities", "name": "Энергетика и ЖКХ", "servicesCount": 1, "projectsCount": 2, "href": "https://attolabs.eu/ru/proekty/?industries=153" },
+      { "id": "life-sciences", "name": "Life Sciences", "servicesCount": 1, "projectsCount": 1, "href": "https://attolabs.eu/ru/proekty/?industries=187" }
+    ]
+  },
+  "projects": {
+    "tag": "ПРОЕКТЫ",
+    "title": "Наши проекты",
+    "viewAll": "Посмотреть все",
+    "learnMore": "Подробнее",
+    "viewAllHref": "https://attolabs.eu/ru/proekty/",
+    "items": [
+      {
+        "id": "ini",
+        "title": "INI",
+        "description": "Включает разработку двух элементов: комплексного калькулятора целей и инвестиционной платформы. Первый позволяет пользователям планировать свои финансовые цели, а второй предоставляет возможность инвестировать в сберегательные и инвестиционные продукты, соответствующие принципам ислама на территории Европы.",
+        "industry": "Банкинг",
+        "coverImage": "https://attolabs.eu/wp-content/uploads/2024/05/picography-modern-urban-city-architecture-sky-scaled.jpg",
+        "href": "https://attolabs.eu/ru/project/inaia-fintech/"
+      },
+      {
+        "id": "hcs",
+        "title": "HCS",
+        "description": "Система управления отоплением, разработанная с октября 2021 по май 2022 года, использует модули ESP32 и FreeRtos на языках C и Python. Использует разнообразные протоколы для интеллектуального контроля и управления отоплением в жилых помещениях.",
+        "industry": "Энергетика и ЖКХ",
+        "coverImage": "https://attolabs.eu/wp-content/uploads/2024/05/picography-modern-urban-city-architecture-sky-scaled.jpg",
+        "href": "https://attolabs.eu/ru/project/sistema-upravleniya-otopleniem/"
+      },
+      {
+        "id": "sls",
+        "title": "SLS",
+        "description": "Система управления уличным освещением, созданная с февраля по октябрь 2020 года, использует модули ESP32 и FreeRtos. Она автономно управляет фонарями по расписанию и собирает телеметрию для реального мониторинга.",
+        "industry": "Энергетика и ЖКХ",
+        "coverImage": "https://attolabs.eu/wp-content/uploads/2024/03/65dd7af81c85fee7c34e4c1e_2nd-scaled.webp",
+        "href": "https://attolabs.eu/ru/project/street-lighting-control-system-copy/"
+      }
+    ]
+  },
+  "testimonials": {
+    "tag": "ГОЛОСА КОМАНДЫ",
+    "title": "Узнайте непосредственно от наших сотрудников",
+    "subtitle": "Опыт работы в AttoLabs — глобальное влияние, инновации, обучение, сотрудничество и благополучие.",
+    "items": [
+      { "category": "Глобальное влияние", "name": "Michail B.", "role": "Инженер-программист", "quote": "AttoLabs стремится оказывать влияние на глобальный уровень благодаря разработке решений, которые способствуют устойчивому развитию и улучшению качества жизни." },
+      { "category": "Глобальное влияние", "name": "Shuhrat M.", "role": "Software Engineering Manager", "quote": "Наша компания оказывает значительное глобальное влияние, реализуя новаторские проекты и инициативы, которые меняют жизнь к лучшему в мировом масштабе." },
+      { "category": "Инновации", "name": "Zikrillo I.", "role": "QA-инженер", "quote": "Наша компания всегда на передовых позициях, когда речь идет о выборе и внедрении новейших технологий и устройств в нашу повседневную деятельность." },
+      { "category": "Инновации", "name": "Michail B.", "role": "Инженер-программист", "quote": "В нашей компании активно внедряются инновации через разработку и внедрение новых технологий и методологий работы." },
+      { "category": "Возможности обучения", "name": "Ilhomjon T.", "role": "Инженер-программист", "quote": "Поддержка компании в посещении конференций, посвященных передовым технологиям, позволяет мне быть в курсе последних тенденций в отрасли." },
+      { "category": "Возможности обучения", "name": "Rustam Y.", "role": "Бизнес-аналитик", "quote": "AttoLabs предложила и проспонсировала полностью соответствующие курсы и наставников для меня, которые я прошел, используя онлайн-ресурсы." },
+      { "category": "Культура сотрудничества", "name": "Shuhrat M.", "role": "Software Engineering Manager", "quote": "Я столкнулся с сильной культурой сотрудничества, где высоко ценится командная работа." },
+      { "category": "Культура сотрудничества", "name": "Ilhomjon T.", "role": "Инженер-программист", "quote": "Меня впечатлило то, что компания уделяет особое внимание сотрудничеству на основе проектов." },
+      { "category": "Благополучие сотрудников", "name": "Shahlo R.", "role": "QA-инженер", "quote": "Я очень ценю то, что наша компания делает для обеспечения общего благополучия сотрудников." },
+      { "category": "Благополучие сотрудников", "name": "Rustam Y.", "role": "Бизнес-аналитик", "quote": "Поддержка баланса между работой и личной жизнью, возможность удаленной работы — общее благополучие сотрудников на высоком уровне." }
+    ]
+  },
+  "tech": {
+    "tag": "ТЕХНОЛОГИИ",
+    "title": "Современный инженерный стек",
+    "subtitle": "От облачных платформ до встроенных систем — мы выбираем правильную технологию для каждой задачи.",
+    "securityNote": "Каждое решение проектируется с принципами безопасности — шифрование, контроль доступа и масштабируемая оркестрация контейнеров."
+  },
+  "about": {
+    "tag": "О НАС",
+    "title": "Инженеры новой эры",
+    "subtitle": "Настоящее мастерство в разработке ПО",
+    "description": "AttoLabs — это новое определение совершенства в сфере разработки ПО. Наша приверженность передовым решениям и благополучию сотрудников отличает нас от других.",
+    "stats": [
+      { "value": 4, "suffix": "", "label": "Глобальных офиса" },
+      { "value": 6, "suffix": "+", "label": "Основных услуг" },
+      { "value": 8, "suffix": "+", "label": "Отраслей" },
+      { "value": 10, "suffix": "+", "label": "Лет инноваций" }
+    ],
+    "differentiators": [
+      { "title": "Глобальное влияние", "description": "Решения, способствующие устойчивому развитию и улучшению качества жизни в разных странах." },
+      { "title": "Культура инноваций", "description": "Agile, DevOps и свобода выбора лучшего технологического стека для каждой задачи." },
+      { "title": "Обучение и рост", "description": "Поддержка конференций, спонсируемые курсы и непрерывное профессиональное развитие." },
+      { "title": "Командная работа", "description": "Проектное сотрудничество с открытой коммуникацией и общей ответственностью." },
+      { "title": "Благополучие сотрудников", "description": "Удаленная работа, баланс жизни и работы и поддерживающая среда." }
+    ]
+  },
+  "contact": {
+    "headline": "Поделитесь вашим видением",
+    "subheadline": "Как с вами связаться? Расскажите о вашем проекте, и наша команда свяжется с вами.",
+    "emailPlaceholder": "Как с вами связаться?",
+    "namePlaceholder": "Как вас зовут?",
+    "submitLabel": "Отправить",
+    "successMessage": "Спасибо! Ваша заявка получена!",
+    "privacyPrefix": "Нажимая кнопку «Отправить», вы соглашаетесь с нашей",
+    "privacyLabel": "Политикой конфиденциальности",
+    "privacyHref": "https://attolabs.eu/ru/politika-konfidenczialnosti/"
+  },
+  "footer": {
+    "copyright": "AttoLabs",
+    "offices": [
+      { "country": "Швейцария", "address": "Альте Гфеннштрассе 16, 8600 Дюбендорф (Цюрих)", "phones": ["+41 76 565 41 71"], "email": "contact@attolabs.eu" },
+      { "country": "Германия", "address": "Фрайлигратштрассе 31, 50935 Кельн", "phones": ["+49 176 44450770", "+49 223847806118"], "email": "contact@attolabs.eu" },
+      { "country": "Турция", "address": "ул. Джума Йолу, р-н Гоксу, 34815 Бейкоз, Стамбул", "phones": ["+90 552 724 93 38"], "email": "contact@attolabs.eu" },
+      { "country": "Узбекистан", "address": "ул. Афросиёб 8А, БЦ Dmaar офис 708, 100031 Ташкент", "phones": ["+998 93 652 87 05"], "email": "contact@attolabs.eu" }
+    ],
+    "social": [
+      { "platform": "LinkedIn", "href": "https://www.linkedin.com/company/attolabs" },
+      { "platform": "Instagram", "href": "https://www.instagram.com/attolabs" },
+      { "platform": "X", "href": "https://x.com/attolabs" },
+      { "platform": "Facebook", "href": "https://m.facebook.com/attolabs.eu" },
+      { "platform": "Behance", "href": "https://www.behance.net/attolabs" }
+    ],
+    "legal": [
+      { "label": "Политика конфиденциальности", "href": "https://attolabs.eu/ru/politika-konfidenczialnosti/" },
+      { "label": "Пользовательское соглашение", "href": "https://attolabs.eu/ru/polzovatelskoe-soglashenie/" }
+    ],
+    "languages": [
+      { "code": "en", "label": "English" },
+      { "code": "de", "label": "Deutsch" },
+      { "code": "ru", "label": "Русский" }
+    ]
+  }
+}

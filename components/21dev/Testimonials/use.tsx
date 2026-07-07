@@ -6,21 +6,29 @@ import { RevealLines } from "@/components/reveal-lines"
 import { RevealText } from "@/components/reveal-text"
 import { ScrollFadeIn } from "@/components/scroll-fade-in"
 import { SectionTag } from "@/components/section-tag"
-import { enterpriseTestimonials } from "@/lib/enterprise-content"
 import { motion } from "framer-motion"
-
-const testimonials = enterpriseTestimonials.map((t) => ({
-  quote: t.quote,
-  name: t.name,
-  role: t.role,
-  company: t.company,
-}))
-
-const firstColumn = testimonials.slice(0, 3)
-const secondColumn = testimonials.slice(3, 6)
-const thirdColumn = testimonials.slice(6, 9)
+import { useTranslations } from "next-intl"
 
 export const TestimonialsSection = () => {
+  const t = useTranslations("testimonials")
+  const items = t.raw("items") as {
+    quote: string
+    name: string
+    role: string
+    category: string
+  }[]
+
+  const testimonials = items.map((item) => ({
+    quote: item.quote,
+    name: item.name,
+    role: item.role,
+    company: item.category,
+  }))
+
+  const firstColumn = testimonials.slice(0, 4)
+  const secondColumn = testimonials.slice(4, 7)
+  const thirdColumn = testimonials.slice(7, 10)
+
   return (
     <section
       id="testimonials"
@@ -38,19 +46,19 @@ export const TestimonialsSection = () => {
             <PixelIcon type="agents" size={40} />
           </ScrollFadeIn>
           <div className="mt-4">
-            <SectionTag accent>Testimonials</SectionTag>
+            <SectionTag accent>{t("tag")}</SectionTag>
           </div>
           <RevealText
             as="h2"
             className="text-3xl md:text-4xl font-light tracking-tight leading-[1.05] mt-6 text-center"
           >
-            What Our Clients Say
+            {t("title")}
           </RevealText>
           <RevealLines
             delay={200}
             className="text-center mt-4 text-sm text-black/45 leading-relaxed"
           >
-            Trusted by enterprise leaders across finance, healthcare, manufacturing, and more.
+            {t("subtitle")}
           </RevealLines>
         </motion.div>
 

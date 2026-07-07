@@ -2,7 +2,9 @@
 
 import { useState } from "react"
 import Link from "next/link"
-import { enterpriseNav } from "@/lib/enterprise-content"
+import { useLocale, useTranslations } from "next-intl"
+import { LanguageSwitcher } from "@/components/enterprise/language-switcher"
+import { NAV_LOGO } from "@/lib/attolabs/shared"
 
 const NAV_STYLE = {
   backdropFilter: "blur(16px)",
@@ -13,8 +15,17 @@ const NAV_STYLE = {
 
 export const EnterpriseNav = () => {
   const [open, setOpen] = useState(false)
+  const t = useTranslations("nav")
+  const locale = useLocale()
 
   const handleClose = () => setOpen(false)
+
+  const links = [
+    { label: t("whatWeDo"), href: "#services" },
+    { label: t("whoWeAre"), href: "#about" },
+    { label: t("workWithUs"), href: t("workWithUsHref") },
+    { label: t("jobs"), href: t("jobsHref") },
+  ]
 
   return (
     <div className="fixed top-4 inset-x-0 z-50 flex justify-center px-4 pointer-events-none">
@@ -25,24 +36,26 @@ export const EnterpriseNav = () => {
           aria-label="Enterprise navigation"
         >
           <Link
-            href="/enterprise"
+            href={`/${locale}/enterprise`}
             className="font-pixel text-xs tracking-[0.25em] text-black/70 hover:text-black transition-colors"
           >
             <div className="w-[120px] h-[45px] flex items-center justify-center">
-            <img className="w-auto" src={enterpriseNav.logo} alt="" />
+              <img className="w-auto" src={NAV_LOGO} alt={t("brand")} />
             </div>
-            {/* {enterpriseNav.brand} */}
           </Link>
 
           <div
             className="hidden md:flex items-center gap-7"
             style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}
           >
-            {enterpriseNav.links.map((link) => (
+            {links.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
                 className="text-[11px] text-black/60 hover:text-black transition-colors duration-200 tracking-wide"
+                {...(link.href.startsWith("http")
+                  ? { target: "_blank", rel: "noopener noreferrer" }
+                  : {})}
               >
                 {link.label}
               </a>
@@ -50,12 +63,15 @@ export const EnterpriseNav = () => {
           </div>
 
           <div className="flex items-center gap-2">
+            <div className="hidden lg:block">
+              <LanguageSwitcher />
+            </div>
             <a
-              href={enterpriseNav.cta.href}
+              href="#contact"
               className="text-[11px] px-4 py-2 rounded-xl bg-[var(--enterprise-accent)] text-white hover:bg-[var(--enterprise-accent-hover)] transition-all duration-200 tracking-wide hidden md:block"
               style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}
             >
-              {enterpriseNav.cta.label}
+              {t("cta")}
             </a>
 
             <button
@@ -93,31 +109,37 @@ export const EnterpriseNav = () => {
 
         <div
           className="md:hidden mt-2 overflow-hidden transition-all duration-300 ease-in-out"
-          style={{ maxHeight: open ? "400px" : "0px", opacity: open ? 1 : 0 }}
+          style={{ maxHeight: open ? "480px" : "0px", opacity: open ? 1 : 0 }}
         >
           <div
             className="rounded-2xl border border-black/[0.06] px-2 py-2 flex flex-col"
             style={NAV_STYLE}
           >
-            {enterpriseNav.links.map((link) => (
+            {links.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
                 onClick={handleClose}
                 className="px-4 py-3 text-sm text-black/60 hover:text-black hover:bg-black/[0.03] rounded-xl transition-colors tracking-wide"
                 style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}
+                {...(link.href.startsWith("http")
+                  ? { target: "_blank", rel: "noopener noreferrer" }
+                  : {})}
               >
                 {link.label}
               </a>
             ))}
+            <div className="px-4 py-3">
+              <LanguageSwitcher />
+            </div>
             <div className="mt-1 px-2 pb-1">
               <a
-                href={enterpriseNav.cta.href}
+                href="#contact"
                 onClick={handleClose}
                 className="block w-full text-center text-[11px] px-4 py-2.5 rounded-xl bg-[var(--enterprise-accent)] text-white hover:bg-[var(--enterprise-accent-hover)] transition-all duration-200 tracking-wide"
                 style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}
               >
-                {enterpriseNav.cta.label}
+                {t("cta")}
               </a>
             </div>
           </div>

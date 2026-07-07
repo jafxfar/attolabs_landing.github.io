@@ -1,0 +1,175 @@
+{
+  "metadata": {
+    "homeTitle": "Engineers for AI Era - AttoLabs",
+    "homeDescription": "Engineers for New Era – Ihr Partner für innovative Ingenieurlösungen. Wir realisieren Projekte mit modernster Technik und Erfahrung.",
+    "projectsTitle": "Forschungsprojekte - AttoLabs",
+    "projectsDescription": "AttoLabs Softwareentwicklungsprojekte Portfolio. Maßgeschneiderte Web- und Mobile-Apps für Ihr Geschäftswachstum und Innovation.",
+    "ogLocale": "de_DE",
+    "canonicalPath": "https://attolabs.eu/de/"
+  },
+  "nav": {
+    "brand": "ATTOLABS",
+    "whatWeDo": "Unsere Projekte",
+    "whoWeAre": "Wer wir sind",
+    "workWithUs": "Partnerschaft",
+    "jobs": "Jobs",
+    "cta": "Teilen Sie Ihre Vision",
+    "workWithUsHref": "https://attolabs.eu/de/arbeite-mit-uns/",
+    "jobsHref": "https://attolabs.eu/de/jobs/"
+  },
+  "hero": {
+    "headline": "Engineers for AI Era",
+    "subheadline": "AttoLabs ist ein führendes Unternehmen in der Welt der Innovation und Technologie, das den globalen Wandel vorantreibt. Unser Fokus auf den Komfort unserer Mitarbeiter und eine erstklassige Produktionseffizienz bringt uns an die Spitze der High-Tech-Industrie.",
+    "primaryCta": "Teilen Sie Ihre Vision",
+    "secondaryCta": "Projekte anzeigen"
+  },
+  "teamStrip": {
+    "label": "Lernen Sie das Team hinter AttoLabs kennen"
+  },
+  "approach": {
+    "tag": "MISSION",
+    "title": "Innovation mit Purpose",
+    "missionTitle": "Globale Wirkung durch Technologie",
+    "missionBody": "AttoLabs hat sich zum Ziel gesetzt, durch die Entwicklung von Lösungen, die zu einer nachhaltigen Entwicklung beitragen, eine globale Wirkung zu erzielen.",
+    "commitmentTitle": "Unser Engagement",
+    "commitmentBody": "Unser Team setzt sich für höchste Qualität und innovative Lösungen ein, um sicherzustellen, dass Ihr Projekt den höchsten Standards entspricht und die Erwartungen übertrifft.",
+    "cta": "Projekte anzeigen"
+  },
+  "services": {
+    "tag": "DIENSTE",
+    "title": "Was wir tun",
+    "subtitle": "Full-Cycle Softwareentwicklung für Unternehmen in Bankwesen, Energie, Regierung und mehr.",
+    "items": [
+      { "id": "digital-transformation", "name": "Digitale Transformation", "industriesCount": 1, "projectsCount": 1, "href": "https://attolabs.eu/de/forschungsprojekte/?services=241" },
+      { "id": "custom-software", "name": "Individuelle Softwareentwicklung", "industriesCount": 1, "projectsCount": 2, "href": "https://attolabs.eu/de/forschungsprojekte/?services=89" },
+      { "id": "mobile-development", "name": "Mobile Entwicklung", "industriesCount": 1, "projectsCount": 1, "href": "https://attolabs.eu/de/forschungsprojekte/?services=97" },
+      { "id": "mvp-development", "name": "MVP-Entwicklung", "industriesCount": 1, "projectsCount": 1, "href": "https://attolabs.eu/de/forschungsprojekte/?services=101" },
+      { "id": "web-development", "name": "Web Entwicklung", "industriesCount": 2, "projectsCount": 2, "href": "https://attolabs.eu/de/forschungsprojekte/?services=117" },
+      { "id": "cloud-development", "name": "Cloud Entwicklung", "industriesCount": 2, "projectsCount": 1, "href": "https://attolabs.eu/de/forschungsprojekte/?services=7" }
+    ]
+  },
+  "industries": {
+    "tag": "INDUSTRIEN",
+    "title": "Branchen, die wir bedienen",
+    "items": [
+      { "id": "banking", "name": "Bankwesen", "servicesCount": 2, "projectsCount": 2, "href": "https://attolabs.eu/de/forschungsprojekte/?industries=161" },
+      { "id": "education", "name": "Bildung", "servicesCount": 1, "projectsCount": 1, "href": "https://attolabs.eu/de/forschungsprojekte/?industries=149" },
+      { "id": "energy-utilities", "name": "Energie und Versorgung", "servicesCount": 1, "projectsCount": 2, "href": "https://attolabs.eu/de/forschungsprojekte/?industries=151" },
+      { "id": "logistic", "name": "Logistik", "servicesCount": 1, "projectsCount": 1, "href": "https://attolabs.eu/de/forschungsprojekte/?industries=169" },
+      { "id": "enterprise", "name": "Unternehmen", "servicesCount": 1, "projectsCount": 1, "href": "https://attolabs.eu/de/forschungsprojekte/?industries=203" },
+      { "id": "government", "name": "Regierung", "servicesCount": 1, "projectsCount": 1, "href": "https://attolabs.eu/de/forschungsprojekte/?industries=197" },
+      { "id": "life-sciences", "name": "Life Sciences", "servicesCount": 1, "projectsCount": 1, "href": "https://attolabs.eu/de/forschungsprojekte/?industries=187" }
+    ]
+  },
+  "projects": {
+    "tag": "PROJEKTE",
+    "title": "Unsere Projekte",
+    "viewAll": "Alle anzeigen",
+    "learnMore": "Mehr erfahren",
+    "viewAllHref": "https://attolabs.eu/de/forschungsprojekte/",
+    "items": [
+      {
+        "id": "ini",
+        "title": "INI",
+        "description": "Dazu gehört die Entwicklung von zwei Elementen: ein umfassender Zielrechner und eine Anlageplattform. Ersteres ermöglicht es den Nutzern, ihre finanziellen Ziele zu planen, während letzteres die Möglichkeit bietet, in islamkonforme Spar- und Anlageprodukte in ganz Europa zu investieren.",
+        "industry": "Bankwesen",
+        "coverImage": "https://attolabs.eu/wp-content/uploads/2024/05/picography-modern-urban-city-architecture-sky-scaled.jpg",
+        "href": "https://attolabs.eu/de/project/webanwendung-fuer-inaia-fintech-sparplan-fonds-etfs/"
+      },
+      {
+        "id": "hcs",
+        "title": "HCS",
+        "description": "Das von Oktober 2021 bis Mai 2022 entwickelte Heizungssteuerungssystem verwendet ESP32- und FreeRtos-Module in C und Python. Es überwacht und steuert die Heizung in Wohngebäuden intelligent unter Berücksichtigung der Innen- und Außentemperaturen.",
+        "industry": "Energie und Versorgung",
+        "coverImage": "https://attolabs.eu/wp-content/uploads/2024/05/picography-modern-urban-city-architecture-sky-scaled.jpg",
+        "href": "https://attolabs.eu/de/project/heizungssteuersystem/"
+      },
+      {
+        "id": "sls",
+        "title": "SLS",
+        "description": "Das zwischen Februar und Oktober 2020 gebaute Straßenlaternen-Steuerungssystem verwendet ESP32- und FreeRtos-Module. Es steuert die Straßenlaternen autonom nach einem Zeitplan und sammelt Telemetriedaten für die Echtzeitüberwachung.",
+        "industry": "Energie und Versorgung",
+        "coverImage": "https://attolabs.eu/wp-content/uploads/2024/03/65dd7af81c85fee7c34e4c1e_2nd-p-1600.webp",
+        "href": "https://attolabs.eu/de/project/strassenbeleuchtungssteuerungssystem/"
+      }
+    ]
+  },
+  "testimonials": {
+    "tag": "TEAMSTIMMEN",
+    "title": "Hören Sie direkt von unserem Team",
+    "subtitle": "Erfahrungen bei AttoLabs — globale Wirkung, Innovation, Lernen, Zusammenarbeit und Wohlbefinden.",
+    "items": [
+      { "category": "Globale Wirkung", "name": "Michail B.", "role": "Software-Ingenieur", "quote": "AttoLabs hat sich zum Ziel gesetzt, durch die Entwicklung von Lösungen, die zu einer nachhaltigen Entwicklung beitragen, eine globale Wirkung zu erzielen." },
+      { "category": "Globale Wirkung", "name": "Shuhrat M.", "role": "Manager für Softwareentwicklung", "quote": "Unser Unternehmen hat durch bahnbrechende Projekte und Initiativen, die auf globaler Ebene etwas bewirken, einen erheblichen Einfluss auf die Welt." },
+      { "category": "Innovation", "name": "Zikrillo I.", "role": "QA-Ingenieur", "quote": "Unser Unternehmen ist immer an vorderster Front, wenn es darum geht, die neuesten Technologien und Geräte in unsere tägliche Arbeit zu integrieren." },
+      { "category": "Innovation", "name": "Michail B.", "role": "Software-Ingenieur", "quote": "Unser Unternehmen treibt die Innovation durch die Entwicklung und Einführung neuer Technologien und Arbeitsmethoden voran." },
+      { "category": "Lernmöglichkeiten", "name": "Ilhomjon T.", "role": "Software-Ingenieur", "quote": "Die Unterstützung des Unternehmens bei der Teilnahme an Spitzentechnologiekonferenzen hält mich über die neuesten Trends in der Branche auf dem Laufenden." },
+      { "category": "Lernmöglichkeiten", "name": "Rustam Y.", "role": "Business-Analystin", "quote": "AttoLabs hat mir die entsprechenden Kurse und Tutoren angeboten und gesponsert, die ich mit Hilfe von Online-Ressourcen absolviert habe." },
+      { "category": "Kultur der Zusammenarbeit", "name": "Shuhrat M.", "role": "Manager für Softwareentwicklung", "quote": "Ich habe eine starke Kultur der Zusammenarbeit erlebt, in der Teamwork einen hohen Stellenwert hat." },
+      { "category": "Kultur der Zusammenarbeit", "name": "Ilhomjon T.", "role": "Software-Ingenieur", "quote": "Ich war beeindruckt von der Betonung der projektbezogenen Zusammenarbeit im Unternehmen." },
+      { "category": "Wohlbefinden der Mitarbeiter", "name": "Shahlo R.", "role": "QA-Ingenieur", "quote": "Ich schätze es sehr, was unser Unternehmen für das allgemeine Wohlbefinden unserer Mitarbeiter tut." },
+      { "category": "Wohlbefinden der Mitarbeiter", "name": "Rustam Y.", "role": "Business-Analystin", "quote": "Durch die Förderung der Vereinbarkeit von Beruf und Privatleben kann ich sagen, dass das Wohlbefinden der Mitarbeiter insgesamt auf einem hohen Niveau liegt." }
+    ]
+  },
+  "tech": {
+    "tag": "TECHNOLOGIE",
+    "title": "Moderner Engineering-Stack",
+    "subtitle": "Von Cloud-Plattformen bis zu Embedded-Systemen — wir wählen die richtige Technologie für jede Herausforderung.",
+    "securityNote": "Jede Lösung wird nach Security-First-Prinzipien entwickelt — Verschlüsselung, rollenbasierte Zugriffskontrolle und skalierbare Container-Orchestrierung."
+  },
+  "about": {
+    "tag": "ÜBER UNS",
+    "title": "Ingenieure für eine neue Ära",
+    "subtitle": "Echte Meisterschaft in der Softwareentwicklung",
+    "description": "AttoLabs ist Ihr vertrauenswürdiger Technologiepartner. Wir entwickeln innovative Softwarelösungen für die digitale Transformation.",
+    "stats": [
+      { "value": 4, "suffix": "", "label": "Globale Büros" },
+      { "value": 6, "suffix": "+", "label": "Kernservices" },
+      { "value": 8, "suffix": "+", "label": "Branchen" },
+      { "value": 10, "suffix": "+", "label": "Jahre Innovation" }
+    ],
+    "differentiators": [
+      { "title": "Globale Wirkung", "description": "Lösungen, die zu nachhaltiger Entwicklung und besserer Lebensqualität in verschiedenen Ländern beitragen." },
+      { "title": "Innovationskultur", "description": "Agile, DevOps und Freiheit, den besten Technologie-Stack für jede Aufgabe zu wählen." },
+      { "title": "Lernen & Wachstum", "description": "Konferenzunterstützung, gesponserte Kurse und kontinuierliche Weiterentwicklung." },
+      { "title": "Kollaborative Teams", "description": "Projektbasierte Zusammenarbeit mit offener Kommunikation und gemeinsamer Verantwortung." },
+      { "title": "Mitarbeiterwohlbefinden", "description": "Remote-Arbeit, Work-Life-Balance und ein unterstützendes Arbeitsumfeld." }
+    ]
+  },
+  "contact": {
+    "headline": "Teilen Sie Ihre Vision mit uns",
+    "subheadline": "Wie können wir Sie erreichen? Erzählen Sie uns von Ihrem Projekt und unser Team meldet sich bei Ihnen.",
+    "emailPlaceholder": "Wie können wir Sie erreichen?",
+    "namePlaceholder": "Wie heißen Sie?",
+    "submitLabel": "Absenden",
+    "successMessage": "Vielen Dank! Ihr Antrag ist eingegangen!",
+    "privacyPrefix": "Durch Klicken auf „Absenden“ akzeptieren Sie unsere",
+    "privacyLabel": "Datenschutzerklärung",
+    "privacyHref": "https://attolabs.eu/de/datenschutzerklaerung/"
+  },
+  "footer": {
+    "copyright": "AttoLabs",
+    "offices": [
+      { "country": "Schweiz", "address": "Alte Gfennstrasse 16, 8600 Dübendorf (Zürich)", "phones": ["+41 76 565 41 71"], "email": "contact@attolabs.eu" },
+      { "country": "Deutschland", "address": "Freiligrathstraße 31, 50935 Köln", "phones": ["+49 176 4445 0770", "+49 2238 4780 6118"], "email": "contact@attolabs.eu" },
+      { "country": "Türkiye", "address": "Cuma Yolu Caddesi Göksu Mah, 34815 Beykoz, İstanbul", "phones": ["+90 552 724 93 38"], "email": "contact@attolabs.eu" },
+      { "country": "Usbekistan", "address": "Afrosiyob 8A Str., BC Dmaar Büro 708, 100031 Tashkent", "phones": ["+998 93 652 87 05"], "email": "contact@attolabs.eu" }
+    ],
+    "social": [
+      { "platform": "LinkedIn", "href": "https://www.linkedin.com/company/attolabs" },
+      { "platform": "Instagram", "href": "https://www.instagram.com/attolabs" },
+      { "platform": "X", "href": "https://x.com/attolabs" },
+      { "platform": "Facebook", "href": "https://m.facebook.com/attolabs.eu" },
+      { "platform": "Behance", "href": "https://www.behance.net/attolabs" }
+    ],
+    "legal": [
+      { "label": "Datenschutzerklärung", "href": "https://attolabs.eu/de/datenschutzerklaerung/" },
+      { "label": "Nutzungsbedingungen", "href": "https://attolabs.eu/de/nutzungsbedingungen/" }
+    ],
+    "languages": [
+      { "code": "en", "label": "English" },
+      { "code": "de", "label": "Deutsch" },
+      { "code": "ru", "label": "Русский" }
+    ]
+  }
+}
