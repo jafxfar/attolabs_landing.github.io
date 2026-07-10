@@ -124,7 +124,7 @@ export const AboutPageClient = () => {
         </div>
       </main>
 
-      <EnterpriseFooter />
+      <EnterpriseFooter hideOffices />
     </div>
   )
 }

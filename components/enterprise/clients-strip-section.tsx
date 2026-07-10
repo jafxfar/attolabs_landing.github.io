@@ -52,7 +52,7 @@ const teamPhotos = [
     alt: 'Microsoft'
   },
   {
-    id:9,
+    id:10,
     src: `https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSucjQSLem8Vaj-cvv6Tql67XLdAHIk2E1rY64b2o5Plw&s=10`,
     alt: `Accenture`,
   },
