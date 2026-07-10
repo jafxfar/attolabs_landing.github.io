@@ -23,7 +23,7 @@ export const ATTOLABS_IMAGES = {
   officeFacade:
     "https://attolabs.eu/wp-content/uploads/2024/03/65e9d4797d4c91d9d0b04c06_GettyImages-906499516-5bc6570d46e0fb0026d6f1e0203201.webp",
   smartpayScreenshot:
-    "https://attolabs.eu/wp-content/uploads/2024/05/screenshot-2024-04-25-184230.png",
+    "https://attolabs.eu/wp-content/uploads/2024/03/65e9d557548876efb661190d_img-1201-p-2000.webp",
   muhsin: "https://attolabs.eu/wp-content/uploads/2024/04/987.jpeg",
   gufron:
     "https://cdn.prod.website-files.com/65ae21eab8e90d9757d32cc8/666ad944092a9dda4b430f66_Cover%20Atto_00002.webp",
