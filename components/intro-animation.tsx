@@ -2,8 +2,10 @@
 
 import { useEffect, useState } from "react"
 
+import { ATTOLABS_IMAGES } from "@/lib/attolabs/shared"
+
 const LETTERS = ["A", "T", "T", "O", "L", "A", "B", "S"]
-const ICON_SRC = "/images/logos/atto-mark.svg"
+const ICON_SRC = ATTOLABS_IMAGES.logoIcon
 const ICON_SLOT_RATIO = 1.15
 
 const LETTER_IN_STAGGER  = 90    // ms between each letter appearing

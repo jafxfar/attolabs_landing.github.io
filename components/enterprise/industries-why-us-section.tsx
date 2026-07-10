@@ -7,11 +7,14 @@ import { RevealText } from "@/components/reveal-text"
 import { ScrollFadeIn } from "@/components/scroll-fade-in"
 import { SectionTag } from "@/components/section-tag"
 import { handleBentoMouseMove } from "@/lib/bento-mouse"
+import { enterprisePath } from "@/lib/attolabs/content"
 import { INDUSTRY_IMAGES } from "@/lib/attolabs/shared"
-import { useTranslations } from "next-intl"
+import { useLocale, useTranslations } from "next-intl"
 
 export const IndustriesWhyUsSection = () => {
   const t = useTranslations("industries")
+  const tCommon = useTranslations("common")
+  const locale = useLocale()
   const items = t.raw("items") as {
     id: string
     name: string
@@ -63,12 +66,10 @@ export const IndustriesWhyUsSection = () => {
                   {industry.servicesCount} services · {industry.projectsCount} projects
                 </p>
                 <a
-                  href={industry.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href={enterprisePath(locale, industry.href)}
                   className="mt-auto pt-4 text-xs tracking-widest uppercase text-[var(--enterprise-accent)] hover:opacity-80 transition-opacity"
                 >
-                  View projects
+                  {tCommon("viewProjects")}
                 </a>
               </div>
             </BentoCard>

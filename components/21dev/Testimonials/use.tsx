@@ -43,7 +43,7 @@ export const TestimonialsSection = () => {
           className="flex flex-col items-center justify-center max-w-xl mx-auto mb-12"
         >
           <ScrollFadeIn scale>
-            <PixelIcon type="agents" size={40} />
+            <PixelIcon type="platform" size={40} />
           </ScrollFadeIn>
           <div className="mt-4">
             <SectionTag accent>{t("tag")}</SectionTag>

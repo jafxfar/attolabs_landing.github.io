@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 import { setRequestLocale } from "next-intl/server"
-import { Suspense } from "react"
-import { ProjectsPageClient } from "@/components/enterprise/projects-page-client"
+import { WorkWithUsPageClient } from "@/components/enterprise/work-with-us-page-client"
 import { buildEnterpriseMetadata } from "@/lib/attolabs/seo"
 import type { AttolabsLocale } from "@/lib/attolabs/types"
 
@@ -13,17 +12,13 @@ export const generateMetadata = async ({
   params,
 }: PageProps): Promise<Metadata> => {
   const { locale } = await params
-  return buildEnterpriseMetadata(locale, "projects")
+  return buildEnterpriseMetadata(locale, "workWithUs")
 }
 
-const ProjectsPage = async ({ params }: PageProps) => {
+const WorkWithUsPage = async ({ params }: PageProps) => {
   const { locale } = await params
   setRequestLocale(locale)
-  return (
-    <Suspense fallback={null}>
-      <ProjectsPageClient />
-    </Suspense>
-  )
+  return <WorkWithUsPageClient />
 }
 
-export default ProjectsPage
+export default WorkWithUsPage

@@ -21,13 +21,24 @@ export type IndustryItem = {
   href: string
 }
 
+export type ProjectSolution = {
+  title: string
+  description: string
+}
+
 export type ProjectItem = {
   id: string
+  slug: string
   title: string
   description: string
   industry: string
+  industryIds: string[]
+  serviceIds: string[]
   coverImage: string
-  href: string
+  client: string
+  goals: string[]
+  solutions: ProjectSolution[]
+  results: ProjectSolution[]
 }
 
 export type TestimonialItem = {
@@ -54,14 +65,76 @@ export type LegalLink = {
   href: string
 }
 
+export type LegalSection = {
+  heading: string
+  paragraphs: string[]
+  bullets?: string[]
+}
+
+export type AboutValue = {
+  number: string
+  title: string
+  description: string
+}
+
+export type WorkWithUsContact = {
+  role: string
+  name: string
+  email: string
+  phone: string
+  photo: string
+}
+
+export type JobItem = {
+  id: string
+  slug: string
+  title: string
+  department: string
+  locations: string[]
+  type: string
+  schedule: string
+  about: string
+  responsibilities: string[]
+  requirements: string[]
+  offer: string[]
+}
+
 export type AttolabsMessages = {
   metadata: {
     homeTitle: string
     homeDescription: string
     projectsTitle: string
     projectsDescription: string
+    aboutTitle: string
+    aboutDescription: string
+    workWithUsTitle: string
+    workWithUsDescription: string
+    jobsTitle: string
+    jobsDescription: string
+    privacyTitle: string
+    privacyDescription: string
+    termsTitle: string
+    termsDescription: string
     ogLocale: string
     canonicalPath: string
+  }
+  common: {
+    backToHome: string
+    backToProjects: string
+    backToJobs: string
+    learnMore: string
+    viewProjects: string
+    applyNow: string
+    filterAll: string
+    clearFilters: string
+    openPositions: string
+    goals: string
+    solutions: string
+    results: string
+    department: string
+    location: string
+    jobType: string
+    lastUpdated: string
   }
   nav: {
     brand: string
@@ -108,6 +181,9 @@ export type AttolabsMessages = {
     viewAll: string
     learnMore: string
     viewAllHref: string
+    filterService: string
+    filterIndustry: string
+    empty: string
     items: ProjectItem[]
   }
   testimonials: {
@@ -129,6 +205,50 @@ export type AttolabsMessages = {
     description: string
     stats: { value: number; suffix: string; label: string }[]
     differentiators: { title: string; description: string }[]
+  }
+  aboutPage: {
+    tag: string
+    title: string
+    lead: string
+    impactTitle: string
+    impactBody: string
+    valuesTitle: string
+    branchesTitle: string
+    stats: { value: string; label: string }[]
+    values: AboutValue[]
+    branches: OfficeItem[]
+  }
+  workWithUsPage: {
+    tag: string
+    title: string
+    subtitle: string
+    contacts: WorkWithUsContact[]
+  }
+  jobsPage: {
+    tag: string
+    title: string
+    intro: string
+    formTitle: string
+    formRole: string
+    formName: string
+    formEmail: string
+    formPhone: string
+    formSubmit: string
+    formSuccess: string
+    noMatch: string
+    items: JobItem[]
+  }
+  legal: {
+    privacy: {
+      title: string
+      updated: string
+      sections: LegalSection[]
+    }
+    terms: {
+      title: string
+      updated: string
+      sections: LegalSection[]
+    }
   }
   contact: {
     headline: string

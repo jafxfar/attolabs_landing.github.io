@@ -1,6 +1,6 @@
-import en from "@/messages/en.json"
+import { enMessages } from "@/lib/attolabs/locales/en"
 import type { AttolabsMessages } from "@/lib/attolabs/types"
-import { HERO_POSTER, HERO_VIDEO, NAV_LOGO, SERVICE_IMAGES } from "@/lib/attolabs/shared"
+import { HERO_IMAGE, NAV_LOGO, SERVICE_IMAGES } from "@/lib/attolabs/shared"
 
 export type ShowcaseProject = {
   id: string
@@ -13,15 +13,21 @@ export type ShowcaseProject = {
   href: string
 }
 
-const content = en as AttolabsMessages
+export type Differentiator = {
+  icon: "award" | "zap" | "brain" | "layers" | "headphones"
+  title: string
+  description: string
+}
+
+const content = enMessages
 
 export const enterpriseHero = {
   headline: content.hero.headline,
   subheadline: content.hero.subheadline,
   primaryCta: { label: content.hero.primaryCta, href: "#contact" },
   secondaryCta: { label: content.hero.secondaryCta, href: "#case-studies" },
-  videoSrc: HERO_VIDEO,
-  image: HERO_POSTER,
+  videoSrc: "",
+  image: HERO_IMAGE,
   clientLogos: [] as { name: string; src: string }[],
 }
 
@@ -46,7 +52,7 @@ export const enterpriseFeaturedProjects: ShowcaseProject[] = content.projects.it
     coverImage: project.coverImage,
     mockupImage: project.coverImage,
     highlights: [{ label: "Industry", value: project.industry }],
-    href: project.href,
+    href: `/en/enterprise/projects/${project.slug}`,
   })
 )
 
@@ -65,15 +71,16 @@ export const enterpriseCaseStudies = content.projects.items.map((project) => ({
   solution: project.description,
   result: project.description,
   metrics: [project.industry],
-  href: project.href,
+  href: `/en/enterprise/projects/${project.slug}`,
   image: project.coverImage,
 }))
 
-export const enterpriseDifferentiators = content.about.differentiators.map((item, i) => ({
-  icon: (["award", "zap", "brain", "layers", "headphones"] as const)[i] ?? "award",
-  title: item.title,
-  description: item.description,
-}))
+export const enterpriseDifferentiators: Differentiator[] =
+  content.about.differentiators.map((item, i) => ({
+    icon: (["award", "zap", "brain", "layers", "headphones"] as const)[i] ?? "award",
+    title: item.title,
+    description: item.description,
+  }))
 
 export const enterpriseContactCta = {
   headline: content.contact.headline,

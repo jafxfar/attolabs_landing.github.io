@@ -7,6 +7,10 @@ import { RevealText } from "@/components/reveal-text"
 import { ScrollFadeIn } from "@/components/scroll-fade-in"
 import { SectionTag } from "@/components/section-tag"
 import { useTranslations } from "next-intl"
+import {
+  SECTION_COMMITMENT_IMAGE,
+  SECTION_MISSION_IMAGE,
+} from "@/lib/attolabs/shared"
 
 export const ProblemSolutionSection = () => {
   const t = useTranslations("approach")
@@ -30,7 +34,7 @@ export const ProblemSolutionSection = () => {
           delay={0}
         >
           <CardImageTop
-            src="/images/footer.png"
+            src={SECTION_MISSION_IMAGE}
             alt={t("missionTitle")}
           />
           <div className="relative z-10 flex flex-col justify-between flex-1 px-8 pb-8 pt-20 mt-auto">
@@ -59,7 +63,7 @@ export const ProblemSolutionSection = () => {
           delay={80}
         >
           <CardImageTop
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Org%20Arc%20-%20Upscaled-Sk90jShfu7nltLnhoQbaMJC1YaQKuU.png"
+            src={SECTION_COMMITMENT_IMAGE}
             alt={t("commitmentTitle")}
           />
           <div className="relative z-10 flex flex-col justify-between flex-1 px-8 pb-8 pt-20 mt-auto">

@@ -4,6 +4,7 @@ import { useState } from "react"
 import Link from "next/link"
 import { useLocale, useTranslations } from "next-intl"
 import { LanguageSwitcher } from "@/components/enterprise/language-switcher"
+import { enterprisePath } from "@/lib/attolabs/content"
 import { NAV_LOGO } from "@/lib/attolabs/shared"
 
 const NAV_STYLE = {
@@ -21,10 +22,10 @@ export const EnterpriseNav = () => {
   const handleClose = () => setOpen(false)
 
   const links = [
-    { label: t("whatWeDo"), href: "#services" },
-    { label: t("whoWeAre"), href: "#about" },
-    { label: t("workWithUs"), href: t("workWithUsHref") },
-    { label: t("jobs"), href: t("jobsHref") },
+    { label: t("whatWeDo"), href: enterprisePath(locale, "/projects") },
+    { label: t("whoWeAre"), href: enterprisePath(locale, "/about") },
+    { label: t("workWithUs"), href: enterprisePath(locale, t("workWithUsHref")) },
+    { label: t("jobs"), href: enterprisePath(locale, t("jobsHref")) },
   ]
 
   return (
@@ -36,7 +37,7 @@ export const EnterpriseNav = () => {
           aria-label="Enterprise navigation"
         >
           <Link
-            href={`/${locale}/enterprise`}
+            href={enterprisePath(locale)}
             className="font-pixel text-xs tracking-[0.25em] text-black/70 hover:text-black transition-colors"
           >
             <div className="w-[120px] h-[45px] flex items-center justify-center">
@@ -49,16 +50,13 @@ export const EnterpriseNav = () => {
             style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}
           >
             {links.map((link) => (
-              <a
+              <Link
                 key={link.label}
                 href={link.href}
                 className="text-[11px] text-black/60 hover:text-black transition-colors duration-200 tracking-wide"
-                {...(link.href.startsWith("http")
-                  ? { target: "_blank", rel: "noopener noreferrer" }
-                  : {})}
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
           </div>
 
@@ -116,18 +114,15 @@ export const EnterpriseNav = () => {
             style={NAV_STYLE}
           >
             {links.map((link) => (
-              <a
+              <Link
                 key={link.label}
                 href={link.href}
                 onClick={handleClose}
                 className="px-4 py-3 text-sm text-black/60 hover:text-black hover:bg-black/[0.03] rounded-xl transition-colors tracking-wide"
                 style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}
-                {...(link.href.startsWith("http")
-                  ? { target: "_blank", rel: "noopener noreferrer" }
-                  : {})}
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
             <div className="px-4 py-3">
               <LanguageSwitcher />

@@ -2,8 +2,9 @@
 
 import { useEffect, useRef } from "react"
 
-// Each icon is a 12×12 pixel grid animated at 60fps with RAF
-// Colors are black at varying opacity to match the light theme
+// 12×12-ish pixel canvas icons themed for AttoLabs:
+ // engineering, global delivery, industries, growth.
+// Accent matches enterprise theme (#fb4d40).
 
 type IconType = "platform" | "agents" | "workflow" | "integrations" | "pricing"
 
@@ -11,253 +12,306 @@ export type PixelIconType = IconType
 
 interface PixelIconProps {
   type: IconType
-  size?: number  // rendered px size (default 40)
+  size?: number
+  accent?: string
 }
 
-// ── Platform icon: rotating gear / node graph ────────────────────────────────
-function drawPlatform(ctx: CanvasRenderingContext2D, W: number, t: number) {
-  const cx = W / 2, cy = W / 2
-  const r  = W * 0.36
-  const ps = W / 12  // pixel size
+const DEFAULT_ACCENT = "#fb4d40"
 
-  // Central node — pulsing
-  const pulse = 0.6 + 0.4 * Math.sin(t * 0.003)
-  ctx.fillStyle = `rgba(0,0,0,${pulse})`
-  const cs = ps * 1.4
-  ctx.fillRect(cx - cs / 2, cy - cs / 2, cs, cs)
+const hexToRgb = (hex: string): [number, number, number] => {
+  const cleaned = hex.replace("#", "")
+  const full =
+    cleaned.length === 3
+      ? cleaned
+          .split("")
+          .map((c) => c + c)
+          .join("")
+      : cleaned
+  const n = Number.parseInt(full, 16)
+  return [(n >> 16) & 255, (n >> 8) & 255, n & 255]
+}
 
-  // 6 orbiting nodes
-  const nodeCount = 6
-  for (let i = 0; i < nodeCount; i++) {
-    const angle = (i / nodeCount) * Math.PI * 2 + t * 0.0015
-    const nx = cx + Math.cos(angle) * r
-    const ny = cy + Math.sin(angle) * r
-    const opacity = 0.3 + 0.5 * ((Math.sin(angle * 2 + t * 0.002) + 1) / 2)
-    ctx.fillStyle = `rgba(0,0,0,${opacity})`
-    ctx.fillRect(Math.round(nx / ps) * ps - ps / 2, Math.round(ny / ps) * ps - ps / 2, ps, ps)
+const ink = (alpha: number) => `rgba(17,17,17,${alpha})`
+const tint = (rgb: [number, number, number], alpha: number) =>
+  `rgba(${rgb[0]},${rgb[1]},${rgb[2]},${alpha})`
 
-    // Connector line (pixelated)
-    const steps = 5
-    for (let s = 1; s < steps; s++) {
-      const lx = cx + (nx - cx) * (s / steps)
-      const ly = cy + (ny - cy) * (s / steps)
-      const lo = (0.06 + 0.1 * (s / steps)) * pulse
-      ctx.fillStyle = `rgba(0,0,0,${lo})`
-      ctx.fillRect(Math.round(lx / ps) * ps, Math.round(ly / ps) * ps, ps * 0.7, ps * 0.7)
+// ── platform: wind turbine (AttoLabs signature) ───────────────────────────────
+const drawPlatform = (
+  ctx: CanvasRenderingContext2D,
+  W: number,
+  t: number,
+  accent: [number, number, number]
+) => {
+  const ps = Math.max(2, Math.floor(W / 12))
+  const snap = (v: number) => Math.round(v / ps) * ps
+
+  // Tower base — centered, rising from bottom
+  const towerW = ps
+  const towerX = snap(W / 2 - towerW / 2)
+  const hubY = snap(W * 0.38)
+  const towerBottom = snap(W - ps * 1.2)
+  const towerH = towerBottom - hubY
+
+  for (let row = 0; row < Math.floor(towerH / ps); row++) {
+    const progress = row / Math.max(1, Math.floor(towerH / ps))
+    ctx.fillStyle = ink(0.2 + progress * 0.45)
+    ctx.fillRect(towerX, hubY + row * ps, towerW, ps - 1)
+  }
+
+  // Base footing
+  ctx.fillStyle = ink(0.35)
+  ctx.fillRect(towerX - ps, towerBottom - ps * 0.2, towerW + ps * 2, ps)
+
+  // Hub
+  const hubSize = ps * 1.35
+  const hubX = snap(W / 2 - hubSize / 2)
+  ctx.fillStyle = tint(accent, 0.9)
+  ctx.fillRect(hubX, hubY - hubSize / 2, hubSize, hubSize)
+
+  // Three blades rotating around hub
+  const bladeLen = W * 0.32
+  const bladeSteps = 5
+  const spin = t * 0.0022
+
+  for (let b = 0; b < 3; b++) {
+    const angle = spin + (b * Math.PI * 2) / 3
+    for (let s = 1; s <= bladeSteps; s++) {
+      const dist = (s / bladeSteps) * bladeLen
+      const bx = W / 2 + Math.cos(angle) * dist
+      const by = hubY + Math.sin(angle) * dist
+      const alpha = 0.25 + 0.55 * (s / bladeSteps)
+      const size = s < bladeSteps ? ps : ps * 1.15
+      ctx.fillStyle = s === bladeSteps ? tint(accent, alpha) : ink(alpha)
+      ctx.fillRect(snap(bx) - size / 2, snap(by) - size / 2, size, size)
     }
   }
 }
 
-// ── Agents icon: humanoid pixel figure running ───────────────────────────────
-// Frames as 8×8 pixel masks (row-major, 1=lit)
-const AGENT_FRAMES: number[][][] = [
-  // Frame 0 — stand
+// ── agents: pixel code brackets </> (engineering craft) ──────────────────────
+const CODE_FRAMES: number[][][] = [
   [
-    [0,0,1,1,1,1,0,0],
-    [0,0,1,1,1,1,0,0],
-    [0,1,1,1,1,1,1,0],
-    [0,0,1,1,1,1,0,0],
-    [0,1,1,0,0,1,1,0],
-    [0,1,1,0,0,1,1,0],
-    [0,0,1,0,0,1,0,0],
-    [0,0,1,0,0,1,0,0],
+    [0, 0, 1, 0, 0, 0, 1, 0],
+    [0, 1, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0],
+    [0, 1, 0, 0, 1, 0, 0, 1],
+    [0, 0, 1, 0, 0, 1, 1, 0],
+    [0, 1, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0],
+    [0, 1, 0, 0, 0, 0, 0, 1],
   ],
-  // Frame 1 — step left
   [
-    [0,0,1,1,1,1,0,0],
-    [0,0,1,1,1,1,0,0],
-    [0,1,1,1,1,1,1,0],
-    [0,0,1,1,1,1,0,0],
-    [0,0,1,1,1,0,0,0],
-    [0,0,1,1,1,1,0,0],
-    [0,1,1,0,0,0,0,0],
-    [0,0,0,0,0,1,1,0],
+    [0, 0, 1, 0, 0, 0, 1, 0],
+    [0, 1, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 1, 0, 0],
+    [0, 1, 0, 0, 1, 0, 0, 1],
+    [0, 0, 1, 0, 0, 1, 1, 0],
+    [0, 1, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0],
+    [0, 1, 0, 0, 0, 0, 0, 1],
   ],
-  // Frame 2 — stand (same as 0)
   [
-    [0,0,1,1,1,1,0,0],
-    [0,0,1,1,1,1,0,0],
-    [0,1,1,1,1,1,1,0],
-    [0,0,1,1,1,1,0,0],
-    [0,1,1,0,0,1,1,0],
-    [0,1,1,0,0,1,1,0],
-    [0,0,1,0,0,1,0,0],
-    [0,0,1,0,0,1,0,0],
+    [0, 0, 1, 0, 0, 0, 1, 0],
+    [0, 1, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0],
+    [0, 1, 0, 0, 0, 0, 0, 1],
+    [0, 0, 1, 0, 1, 1, 0, 0],
+    [0, 1, 0, 0, 0, 0, 1, 0],
+    [1, 0, 0, 0, 0, 0, 0, 0],
+    [0, 1, 0, 0, 0, 0, 0, 1],
   ],
-  // Frame 3 — step right
   [
-    [0,0,1,1,1,1,0,0],
-    [0,0,1,1,1,1,0,0],
-    [0,1,1,1,1,1,1,0],
-    [0,0,1,1,1,1,0,0],
-    [0,0,0,1,1,1,0,0],
-    [0,0,1,1,1,1,0,0],
-    [0,1,1,0,0,0,0,0],
-    [0,0,0,0,0,1,1,0],
+    [0, 0, 1, 0, 0, 0, 1, 0],
+    [0, 1, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0],
+    [0, 1, 0, 0, 1, 0, 0, 1],
+    [0, 0, 1, 0, 0, 1, 1, 0],
+    [0, 1, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0],
+    [0, 1, 0, 0, 0, 0, 0, 1],
   ],
 ]
 
-function drawAgents(ctx: CanvasRenderingContext2D, W: number, t: number) {
-  const fps       = 6  // animation speed in "frames per second equivalent"
-  const frameIdx  = Math.floor(t / (1000 / fps)) % AGENT_FRAMES.length
-  const frame     = AGENT_FRAMES[frameIdx]
-  const rows      = frame.length
-  const cols      = frame[0].length
-  const ps        = Math.floor(W / cols)
-  const offX      = Math.floor((W - cols * ps) / 2)
-  const offY      = Math.floor((W - rows * ps) / 2)
-
-  // Subtle walk offset
-  const bobY = Math.sin(t * 0.012) * ps * 0.4
+const drawAgents = (
+  ctx: CanvasRenderingContext2D,
+  W: number,
+  t: number,
+  accent: [number, number, number]
+) => {
+  const fps = 5
+  const frameIdx = Math.floor(t / (1000 / fps)) % CODE_FRAMES.length
+  const frame = CODE_FRAMES[frameIdx]
+  const rows = frame.length
+  const cols = frame[0].length
+  const ps = Math.floor(W / cols)
+  const offX = Math.floor((W - cols * ps) / 2)
+  const offY = Math.floor((W - rows * ps) / 2)
+  const cursorOn = Math.sin(t * 0.01) > 0
 
   frame.forEach((row, r) => {
     row.forEach((cell, c) => {
       if (!cell) return
-      const opacity = 0.5 + 0.5 * Math.sin(t * 0.001 + r * 0.3)
-      ctx.fillStyle = `rgba(0,0,0,${opacity})`
-      ctx.fillRect(offX + c * ps, offY + r * ps + bobY, ps - 1, ps - 1)
-    })
-  })
-}
-
-// ── Workflow icon: hourglass shape — top half fills, drains to bottom ─────────
-function drawWorkflow(ctx: CanvasRenderingContext2D, W: number, t: number) {
-  const ps   = Math.floor(W / 12)
-  const cx   = W / 2
-  const cy   = W / 2
-
-  // Hourglass pixel mask: 7 rows × 7 cols, symmetric
-  const shape = [
-    [1,1,1,1,1,1,1],
-    [0,1,1,1,1,1,0],
-    [0,0,1,1,1,0,0],
-    [0,0,0,1,0,0,0],
-    [0,0,1,1,1,0,0],
-    [0,1,1,1,1,1,0],
-    [1,1,1,1,1,1,1],
-  ]
-
-  const rows = shape.length
-  const cols = shape[0].length
-  const offX = cx - (cols * ps) / 2
-  const offY = cy - (rows * ps) / 2
-
-  // Sand fill: top half empties, bottom half fills — period 2s
-  const period = 2400
-  const fill   = (t % period) / period  // 0→1
-
-  shape.forEach((row, r) => {
-    row.forEach((cell, c) => {
-      if (!cell) return
-
-      // Determine if this pixel is "sand"
-      const isTopHalf = r < rows / 2
-      const isMid     = r === Math.floor(rows / 2)
-      let sandAlpha: number
-
-      if (isTopHalf) {
-        // Top: pixels disappear row by row from top
-        const rowFill = 1 - Math.min(1, fill * rows * 1.4 - r)
-        sandAlpha = Math.max(0, rowFill)
-      } else if (isMid) {
-        // Center pixel pulses
-        sandAlpha = 0.5 + 0.4 * Math.sin(t * 0.008)
-      } else {
-        // Bottom: pixels appear row by row from center
-        const rowFromCenter = r - Math.floor(rows / 2)
-        const rowFill = Math.min(1, fill * rows * 1.4 - rowFromCenter)
-        sandAlpha = Math.max(0, rowFill)
-      }
-
-      // Outline always visible at low opacity
-      const baseAlpha = 0.12
-      const alpha = Math.max(baseAlpha, sandAlpha * 0.85)
-      ctx.fillStyle = `rgba(0,0,0,${alpha})`
+      const isSlash = c >= 3 && c <= 5
+      const opacity = 0.45 + 0.45 * ((Math.sin(t * 0.002 + r * 0.4) + 1) / 2)
+      ctx.fillStyle = isSlash ? tint(accent, opacity) : ink(opacity)
       ctx.fillRect(offX + c * ps, offY + r * ps, ps - 1, ps - 1)
     })
   })
+
+  if (cursorOn) {
+    ctx.fillStyle = tint(accent, 0.85)
+    ctx.fillRect(offX + cols * ps - ps, offY + (rows - 1) * ps, ps - 1, ps - 1)
+  }
 }
 
-// ── Integrations icon: pixel grid of tiles that light up in sequence ──────────
-function drawIntegrations(ctx: CanvasRenderingContext2D, W: number, t: number) {
-  const cols = 5, rows = 4
-  const ps   = Math.floor(W / (cols + 1))
-  const gap  = 2
+// ── workflow: delivery pipeline (brief → build → ship) ───────────────────────
+const drawWorkflow = (
+  ctx: CanvasRenderingContext2D,
+  W: number,
+  t: number,
+  accent: [number, number, number]
+) => {
+  const ps = Math.floor(W / 12)
+  const stages = 3
+  const box = ps * 2.2
+  const gap = ps * 1.4
+  const total = stages * box + (stages - 1) * gap
+  const offX = (W - total) / 2
+  const cy = W / 2
+  const period = 2400
+  const phase = (t % period) / period
+
+  for (let i = 0; i < stages; i++) {
+    const x = offX + i * (box + gap)
+    const y = cy - box / 2
+    const active = phase > i / stages && phase < (i + 1.15) / stages
+    const lit = active || phase > (i + 0.2) / stages
+
+    ctx.fillStyle = ink(0.12)
+    ctx.fillRect(x, y, box, box)
+
+    if (lit) {
+      const a = active ? 0.85 : 0.35
+      ctx.fillStyle = tint(accent, a)
+      ctx.fillRect(x + 1, y + 1, box - 2, box - 2)
+    }
+
+    if (i < stages - 1) {
+      const lx = x + box
+      const ly = cy - ps / 2
+      const flow = (phase * stages - i + 1) % 1
+      const steps = 3
+      for (let s = 0; s < steps; s++) {
+        const p = (s + flow) / steps
+        ctx.fillStyle = ink(0.15 + 0.35 * (1 - Math.abs(p - 0.5) * 2))
+        ctx.fillRect(lx + p * gap - ps / 2, ly, ps * 0.7, ps * 0.7)
+      }
+    }
+  }
+}
+
+// ── integrations: industry constellation ─────────────────────────────────────
+const drawIntegrations = (
+  ctx: CanvasRenderingContext2D,
+  W: number,
+  t: number,
+  accent: [number, number, number]
+) => {
+  const cols = 4
+  const rows = 3
+  const ps = Math.floor(W / (cols + 1.5))
+  const gap = 3
   const offX = Math.floor((W - cols * (ps + gap)) / 2)
   const offY = Math.floor((W - rows * (ps + gap)) / 2)
   const total = cols * rows
-
-  const wave = (t * 0.0008)
+  const wave = t * 0.0009
 
   for (let r = 0; r < rows; r++) {
     for (let c = 0; c < cols; c++) {
-      const idx   = r * cols + c
-      const phase = idx / total * Math.PI * 2
-      const alpha = 0.1 + 0.65 * ((Math.sin(wave + phase) + 1) / 2)
-      const x     = offX + c * (ps + gap)
-      const y     = offY + r * (ps + gap)
-      ctx.fillStyle = `rgba(0,0,0,${alpha})`
+      const idx = r * cols + c
+      const phase = (idx / total) * Math.PI * 2
+      const alpha = 0.12 + 0.7 * ((Math.sin(wave + phase) + 1) / 2)
+      const x = offX + c * (ps + gap)
+      const y = offY + r * (ps + gap)
+      const useAccent = (r + c) % 2 === 0
+      ctx.fillStyle = useAccent ? tint(accent, alpha * 0.9) : ink(alpha)
       ctx.fillRect(x, y, ps, ps)
     }
   }
 }
 
-// ── Pricing icon: stacked bar chart growing ───────────────────────────────────
-function drawPricing(ctx: CanvasRenderingContext2D, W: number, t: number) {
-  const ps    = Math.floor(W / 12)
-  const bars  = 3
-  const bw    = ps * 2
-  const gap   = ps
+// ── pricing: impact / growth signal ──────────────────────────────────────────
+const drawPricing = (
+  ctx: CanvasRenderingContext2D,
+  W: number,
+  t: number,
+  accent: [number, number, number]
+) => {
+  const ps = Math.floor(W / 12)
+  const bars = 4
+  const bw = ps * 1.6
+  const gap = ps * 0.7
   const total = bars * bw + (bars - 1) * gap
-  const offX  = Math.floor((W - total) / 2)
-  const maxH  = W * 0.7
-
-  const heights = [0.45, 0.75, 0.55]
-  const wave = Math.sin(t * 0.0015) * 0.12
+  const offX = Math.floor((W - total) / 2)
+  const maxH = W * 0.72
+  const heights = [0.35, 0.55, 0.78, 0.62]
+  const wave = Math.sin(t * 0.0016) * 0.1
 
   heights.forEach((h, i) => {
-    const animated = Math.max(0.1, h + wave * (i % 2 === 0 ? 1 : -1))
+    const animated = Math.max(0.12, h + wave * (i % 2 === 0 ? 1 : -1))
     const bh = animated * maxH
-    const x  = offX + i * (bw + gap)
-    const y  = W - bh - ps
-
-    // Bar body (pixelated — fill row by row)
+    const x = offX + i * (bw + gap)
+    const y = W - bh - ps
     const rowCount = Math.floor(bh / ps)
+
     for (let row = 0; row < rowCount; row++) {
       const progress = 1 - row / rowCount
-      const alpha    = 0.15 + progress * 0.7
-      ctx.fillStyle  = `rgba(0,0,0,${alpha})`
+      const alpha = 0.18 + progress * 0.7
+      const isTop = row < 2
+      ctx.fillStyle = isTop ? tint(accent, alpha) : ink(alpha * 0.85)
       ctx.fillRect(x, y + row * ps, bw, ps - 1)
     }
   })
 }
 
-// ── Canvas wrapper ────────────────────────────────────────────────────────────
-export function PixelIcon({ type, size = 40 }: PixelIconProps) {
+export const PixelIcon = ({
+  type,
+  size = 40,
+  accent = DEFAULT_ACCENT,
+}: PixelIconProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
-  const rafRef    = useRef<number>(0)
+  const rafRef = useRef(0)
 
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
-    const ctx = canvas.getContext("2d")!
+    const ctx = canvas.getContext("2d")
+    if (!ctx) return
+    const accentRgb = hexToRgb(accent)
 
     const draw = (t: number) => {
       const dpr = window.devicePixelRatio || 1
-      canvas.width  = size * dpr
+      canvas.width = size * dpr
       canvas.height = size * dpr
-      ctx.scale(dpr, dpr)
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
       ctx.clearRect(0, 0, size, size)
-
-      // Disable anti-aliasing for crisp pixels
       ctx.imageSmoothingEnabled = false
 
       switch (type) {
-        case "platform":      drawPlatform(ctx, size, t);      break
-        case "agents":        drawAgents(ctx, size, t);        break
-        case "workflow":      drawWorkflow(ctx, size, t);      break
-        case "integrations":  drawIntegrations(ctx, size, t);  break
-        case "pricing":       drawPricing(ctx, size, t);       break
+        case "platform":
+          drawPlatform(ctx, size, t, accentRgb)
+          break
+        case "agents":
+          drawAgents(ctx, size, t, accentRgb)
+          break
+        case "workflow":
+          drawWorkflow(ctx, size, t, accentRgb)
+          break
+        case "integrations":
+          drawIntegrations(ctx, size, t, accentRgb)
+          break
+        case "pricing":
+          drawPricing(ctx, size, t, accentRgb)
+          break
       }
 
       rafRef.current = requestAnimationFrame(draw)
@@ -265,11 +319,12 @@ export function PixelIcon({ type, size = 40 }: PixelIconProps) {
 
     rafRef.current = requestAnimationFrame(draw)
     return () => cancelAnimationFrame(rafRef.current)
-  }, [type, size])
+  }, [type, size, accent])
 
   return (
     <canvas
       ref={canvasRef}
+      aria-hidden="true"
       style={{
         width: size,
         height: size,

@@ -15,11 +15,14 @@ import { TechStackSection } from "@/components/enterprise/tech-stack-section"
 import { EnterpriseFooter } from "@/components/enterprise/enterprise-footer"
 import AboutUsSection from "@/components/21dev/about-us"
 import { TestimonialsSection } from "@/components/21dev/Testimonials/use"
+import { enterprisePath } from "@/lib/attolabs/content"
+import { SECTION_CONTACT_IMAGE } from "@/lib/attolabs/shared"
 import { enterpriseTheme, enterpriseThemeStyle } from "@/lib/enterprise-theme"
-import { useTranslations } from "next-intl"
+import { useLocale, useTranslations } from "next-intl"
 
 export const EnterprisePageClient = () => {
   const t = useTranslations("contact")
+  const locale = useLocale()
   const [heroReady, setHeroReady] = useState(false)
   const [videoReady, setVideoReady] = useState(false)
   const [email, setEmail] = useState("")
@@ -65,11 +68,11 @@ export const EnterprisePageClient = () => {
         className="relative py-32 px-6 md:px-12 lg:px-20 border-t border-black/[0.06] overflow-hidden"
       >
         <img
-          src="/images/footer.png"
+          src={SECTION_CONTACT_IMAGE}
           alt=""
           aria-hidden="true"
-          className="absolute bottom-0 left-0 w-full object-cover object-bottom pointer-events-none select-none"
-          style={{ opacity: 0.85 }}
+          className="absolute bottom-0 left-0 w-full h-full object-cover object-center pointer-events-none select-none"
+          style={{ opacity: 0.35 }}
         />
         <div
           className="absolute inset-0 pointer-events-none"
@@ -127,9 +130,7 @@ export const EnterprisePageClient = () => {
               <p className="text-xs text-black/35 text-center pt-2">
                 {t("privacyPrefix")}{" "}
                 <a
-                  href={t("privacyHref")}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href={enterprisePath(locale, t("privacyHref"))}
                   className="underline hover:text-[var(--enterprise-accent)]"
                 >
                   {t("privacyLabel")}

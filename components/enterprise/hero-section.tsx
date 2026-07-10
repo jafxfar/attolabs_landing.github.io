@@ -3,7 +3,7 @@
 import { RevealLines } from "@/components/reveal-lines"
 import { RevealText } from "@/components/reveal-text"
 import { useTranslations } from "next-intl"
-import { HERO_POSTER, HERO_VIDEO } from "@/lib/attolabs/shared"
+import { HERO_POSTER,HERO_VIDEO } from "@/lib/attolabs/shared"
 
 type HeroSectionProps = {
   heroReady: boolean

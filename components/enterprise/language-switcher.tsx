@@ -6,9 +6,9 @@ import { usePathname } from "next/navigation"
 import { attolabsLocales } from "@/lib/attolabs/content"
 
 const localeLabels: Record<string, string> = {
-  en: "English",
-  de: "Deutsch",
-  ru: "Русский",
+  en: "EN",
+  de: "DE",
+  ru: "RU",
 }
 
 type LanguageSwitcherProps = {

@@ -6,11 +6,13 @@ import { RevealText } from "@/components/reveal-text"
 import { ScrollFadeIn } from "@/components/scroll-fade-in"
 import { SectionTag } from "@/components/section-tag"
 import { StackingCards } from "@/components/stacking-cards"
-import { useTranslations } from "next-intl"
+import { enterprisePath } from "@/lib/attolabs/content"
 import { SERVICE_IMAGES } from "@/lib/attolabs/shared"
+import { useLocale, useTranslations } from "next-intl"
 
 export const SolutionsGridSection = () => {
   const t = useTranslations("services")
+  const locale = useLocale()
   const items = t.raw("items") as {
     id: string
     name: string
@@ -20,6 +22,7 @@ export const SolutionsGridSection = () => {
   }[]
 
   const stackingItems = items.map((service) => ({
+    id: service.id,
     label: service.name.split(" ")[0]?.toUpperCase() ?? "SERVICE",
     title: service.name,
     desc: `${service.industriesCount} industries · ${service.projectsCount} projects`,
@@ -28,7 +31,7 @@ export const SolutionsGridSection = () => {
       { v: String(service.projectsCount), l: "projects" },
     ],
     img: SERVICE_IMAGES[service.id] ?? SERVICE_IMAGES["custom-software"],
-    href: service.href,
+    href: enterprisePath(locale, service.href),
   }))
 
   return (

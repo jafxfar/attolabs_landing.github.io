@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react"
 import { ArrowRight } from "lucide-react"
 
 export type StackingCardItem = {
+  id?: string
   label: string
   title: string
   desc: string
@@ -61,7 +62,7 @@ export const StackingCards = ({ items }: StackingCardsProps) => {
 
         return (
           <div
-            key={item.label}
+            key={item.id ?? `${item.label}-${i}`}
             ref={(el) => {
               cardRefs.current[i] = el
             }}

@@ -10,6 +10,7 @@ import {
 } from "lucide-react"
 import { ScrollStagger } from "@/components/scroll-stagger"
 import { LanguageSwitcher } from "@/components/enterprise/language-switcher"
+import { enterprisePath } from "@/lib/attolabs/content"
 import { useLocale, useTranslations } from "next-intl"
 
 const socialIcons = {
@@ -37,17 +38,17 @@ export const EnterpriseFooter = () => {
   const legal = t.raw("legal") as { label: string; href: string }[]
 
   const navLinks = [
-    { label: tNav("whatWeDo"), href: "#services" },
-    { label: tNav("whoWeAre"), href: "#about" },
-    { label: tNav("workWithUs"), href: tNav("workWithUsHref"), external: true },
-    { label: tNav("jobs"), href: tNav("jobsHref"), external: true },
+    { label: tNav("whatWeDo"), href: enterprisePath(locale, "/projects") },
+    { label: tNav("whoWeAre"), href: enterprisePath(locale, "/about") },
+    { label: tNav("workWithUs"), href: enterprisePath(locale, tNav("workWithUsHref")) },
+    { label: tNav("jobs"), href: enterprisePath(locale, tNav("jobsHref")) },
   ]
 
   return (
     <footer className="py-16 px-6 md:px-12 lg:px-20 border-t border-black/[0.06]">
       <div className="max-w-6xl mx-auto">
         <ScrollStagger
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mb-12"
           staggerMs={100}
           direction="up"
         >
@@ -88,15 +89,9 @@ export const EnterpriseFooter = () => {
             <ul className="space-y-2">
               {navLinks.map((link) => (
                 <li key={link.label}>
-                  <a
-                    href={link.href}
-                    className={linkClass}
-                    {...(link.external
-                      ? { target: "_blank", rel: "noopener noreferrer" }
-                      : {})}
-                  >
+                  <Link href={link.href} className={linkClass}>
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -129,15 +124,13 @@ export const EnterpriseFooter = () => {
           </span>
           <div className="flex items-center gap-6 flex-wrap">
             {legal.map((link) => (
-              <a
+              <Link
                 key={link.label}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
+                href={enterprisePath(locale, link.href)}
                 className="text-xs text-black/25 hover:text-[var(--enterprise-accent)] transition-colors tracking-widest"
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
             <Link
               href="/"
@@ -146,7 +139,7 @@ export const EnterpriseFooter = () => {
               AI Platform
             </Link>
             <Link
-              href={`/${locale}/enterprise`}
+              href={enterprisePath(locale)}
               className="text-xs text-black/25 hover:text-[var(--enterprise-accent)] transition-colors tracking-widest"
             >
               Enterprise
