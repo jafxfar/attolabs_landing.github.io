@@ -24,7 +24,11 @@ const socialIcons = {
 const linkClass =
   "text-sm text-black/45 hover:text-[var(--enterprise-accent)] transition-colors"
 
-export const EnterpriseFooter = () => {
+type EnterpriseFooterProps = {
+  hideOffices?: boolean
+}
+
+export const EnterpriseFooter = ({ hideOffices = false }: EnterpriseFooterProps) => {
   const t = useTranslations("footer")
   const tNav = useTranslations("nav")
   const locale = useLocale()
@@ -47,39 +51,41 @@ export const EnterpriseFooter = () => {
   return (
     <footer className="py-16 px-6 md:px-12 lg:px-20 border-t border-black/[0.06]">
       <div className="max-w-6xl mx-auto">
-        <ScrollStagger
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mb-12"
-          staggerMs={100}
-          direction="up"
-        >
-          {offices.map((office) => (
-            <div key={office.country}>
-              <h3 className="text-xs tracking-widest text-black/35 uppercase mb-4">
-                {office.country}
-              </h3>
-              <p className="text-sm text-black/45 leading-relaxed mb-3">
-                {office.address}
-              </p>
-              <div className="space-y-1">
-                {office.phones.map((phone) => (
+        {!hideOffices && (
+          <ScrollStagger
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mb-12"
+            staggerMs={100}
+            direction="up"
+          >
+            {offices.map((office) => (
+              <div key={office.country}>
+                <h3 className="text-xs tracking-widest text-black/35 uppercase mb-4">
+                  {office.country}
+                </h3>
+                <p className="text-sm text-black/45 leading-relaxed mb-3">
+                  {office.address}
+                </p>
+                <div className="space-y-1">
+                  {office.phones.map((phone) => (
+                    <a
+                      key={phone}
+                      href={`tel:${phone.replace(/\s/g, "")}`}
+                      className={`block ${linkClass}`}
+                    >
+                      {phone}
+                    </a>
+                  ))}
                   <a
-                    key={phone}
-                    href={`tel:${phone.replace(/\s/g, "")}`}
+                    href={`mailto:${office.email}`}
                     className={`block ${linkClass}`}
                   >
-                    {phone}
+                    {office.email}
                   </a>
-                ))}
-                <a
-                  href={`mailto:${office.email}`}
-                  className={`block ${linkClass}`}
-                >
-                  {office.email}
-                </a>
+                </div>
               </div>
-            </div>
-          ))}
-        </ScrollStagger>
+            ))}
+          </ScrollStagger>
+        )}
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12 pb-12 border-b border-black/[0.04]">
           <div>
@@ -132,18 +138,6 @@ export const EnterpriseFooter = () => {
                 {link.label}
               </Link>
             ))}
-            <Link
-              href="/"
-              className="text-xs text-black/25 hover:text-[var(--enterprise-accent)] transition-colors tracking-widest"
-            >
-              AI Platform
-            </Link>
-            <Link
-              href={enterprisePath(locale)}
-              className="text-xs text-black/25 hover:text-[var(--enterprise-accent)] transition-colors tracking-widest"
-            >
-              Enterprise
-            </Link>
           </div>
         </div>
       </div>

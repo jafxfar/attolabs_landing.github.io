@@ -11,21 +11,30 @@ const _courierPrime = Courier_Prime({ weight: ["400", "700"], subsets: ["latin"]
 const _ibmPlexSans = IBM_Plex_Sans({ weight: ["300", "400", "500", "600"], subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'ATTOLABS — Autonomous AI Agents at Scale',
-  description: 'Deploy autonomous AI agents that think, act, and execute across any workflow. Connect 200+ integrations, run agents in parallel, and ship faster with the ATTOLABS platform.',
-  keywords: ['AI agents', 'autonomous agents', 'LLM orchestration', 'AI automation', 'multi-agent platform'],
-  authors: [{ name: 'ATTOLABS' }],
+  title: 'Engineers for AI Era - AttoLabs',
+  description:
+    'AttoLabs is a leader in innovation and technology that drives global change. Custom software, cloud, mobile, and digital transformation across Europe and beyond.',
+  keywords: [
+    'software development',
+    'digital transformation',
+    'custom software',
+    'cloud',
+    'AttoLabs',
+  ],
+  authors: [{ name: 'AttoLabs' }],
   openGraph: {
-    title: 'ATTOLABS — Autonomous AI Agents at Scale',
-    description: 'Deploy autonomous AI agents that think, act, and execute across any workflow.',
+    title: 'Engineers for AI Era - AttoLabs',
+    description:
+      'AttoLabs is a leader in innovation and technology that drives global change.',
     type: 'website',
-    url: 'https://ATTOLABS.ai',
-    siteName: 'ATTOLABS',
+    url: 'https://attolabs.eu',
+    siteName: 'AttoLabs',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'ATTOLABS — Autonomous AI Agents at Scale',
-    description: 'Deploy autonomous AI agents that think, act, and execute across any workflow.',
+    title: 'Engineers for AI Era - AttoLabs',
+    description:
+      'AttoLabs is a leader in innovation and technology that drives global change.',
   },
   icons: {
     icon: [

@@ -34,15 +34,17 @@ export const LegalPageClient = ({ kind }: LegalPageClientProps) => {
 
       <main className="pt-28 pb-16 px-6 md:px-12 lg:px-20">
         <div className="max-w-3xl mx-auto">
-          <Link
-            href={enterprisePath(locale)}
-            className="inline-flex items-center gap-2 text-sm text-black/45 hover:text-[var(--enterprise-accent)] transition-colors mb-10"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            {tCommon("backToHome")}
-          </Link>
+          <div className="flex items-center justify-start gap-2 mb-10">
+            <Link
+              href={enterprisePath(locale)}
+              className="inline-flex flex items-center gap-1 text-sm text-black/45 hover:text-[var(--enterprise-accent)] transition-colors"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              {tCommon("backToHome")}
+            </Link>
+            <SectionTag accent>{t("tag")}</SectionTag>
+          </div>
 
-          <SectionTag accent>Legal</SectionTag>
           <RevealText
             as="h1"
             className="text-4xl md:text-5xl font-light tracking-tight leading-[1.05] mt-6 mb-3"
